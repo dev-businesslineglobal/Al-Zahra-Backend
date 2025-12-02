@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <_PublishTargetUrl>C:\Users\hassan\Desktop\Bisk\Bisk\BISK_API\bin\Release\net8.0\publish\</_PublishTargetUrl>
+    <History>True|2025-09-29T12:44:49.6587566Z||;True|2025-09-29T17:22:10.8677579+05:00||;True|2025-09-29T17:22:01.2547587+05:00||;True|2025-09-28T18:45:56.3901705+05:00||;True|2025-09-28T18:32:02.7842285+05:00||;True|2025-09-28T18:30:58.5401679+05:00||;True|2025-09-28T18:20:29.4191684+05:00||;True|2025-09-24T18:23:07.9001445+05:00||;True|2025-09-11T14:33:05.2309227+05:00||;True|2025-09-11T14:32:16.6979338+05:00||;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+</Project>

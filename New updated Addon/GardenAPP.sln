@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35527.113
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GardenAPP", "GardenAPP.csproj", "{2F8A2E6D-94B6-475A-A806-1330FA14D003}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2F8A2E6D-94B6-475A-A806-1330FA14D003}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F8A2E6D-94B6-475A-A806-1330FA14D003}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F8A2E6D-94B6-475A-A806-1330FA14D003}.Debug|x64.ActiveCfg = Debug|x64
+		{2F8A2E6D-94B6-475A-A806-1330FA14D003}.Debug|x64.Build.0 = Debug|x64
+		{2F8A2E6D-94B6-475A-A806-1330FA14D003}.Debug|x86.ActiveCfg = Debug|x86
+		{2F8A2E6D-94B6-475A-A806-1330FA14D003}.Debug|x86.Build.0 = Debug|x86
+		{2F8A2E6D-94B6-475A-A806-1330FA14D003}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F8A2E6D-94B6-475A-A806-1330FA14D003}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F8A2E6D-94B6-475A-A806-1330FA14D003}.Release|x64.ActiveCfg = Release|x64
+		{2F8A2E6D-94B6-475A-A806-1330FA14D003}.Release|x64.Build.0 = Release|x64
+		{2F8A2E6D-94B6-475A-A806-1330FA14D003}.Release|x86.ActiveCfg = Release|x86
+		{2F8A2E6D-94B6-475A-A806-1330FA14D003}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A9B61288-70CC-4282-83F0-E1B606B4C9AE}
+	EndGlobalSection
+EndGlobal

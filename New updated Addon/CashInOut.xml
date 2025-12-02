@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GardenAPP</name>
+    </assembly>
+    <members>
+        <member name="T:GardenAPP.GlobalFunctions">
+            <summary>
+            Globally whatever Function and method do you want define here 
+            We can use any class and module from here  
+            </summary>
+            <remarks></remarks>
+        </member>
+        <member name="T:GardenAPP.GlobalVariables">
+            <summary>
+            GGlobally whatever variable do you want declare here 
+            We can use any class and module from here  
+            </summary>
+            <remarks></remarks>
+        </member>
+        <member name="T:GardenAPP.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:GardenAPP.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:GardenAPP.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="T:CashFlow.My.Resources.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+    </members>
+</doc>

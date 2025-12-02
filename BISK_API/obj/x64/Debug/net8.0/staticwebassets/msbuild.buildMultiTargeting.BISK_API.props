@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\BISK_API.props" />
+</Project>

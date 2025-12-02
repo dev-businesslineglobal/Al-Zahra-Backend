@@ -1,0 +1,38 @@
+C:\Hassan\AL-Zara\Garden APP\obj\x64\Debug\GardenAPP.csproj.AssemblyReference.cache
+C:\Hassan\AL-Zara\Garden APP\obj\x64\Debug\Interop.Microsoft.Office.Core.dll
+C:\Hassan\AL-Zara\Garden APP\obj\x64\Debug\Interop.SAPbobsCOM.dll
+C:\Hassan\AL-Zara\Garden APP\obj\x64\Debug\Interop.SAPbouiCOM.dll
+C:\Hassan\AL-Zara\Garden APP\obj\x64\Debug\GardenAPP.csproj.ResolveComReference.cache
+C:\Hassan\AL-Zara\Garden APP\obj\x64\Debug\GardenAPP.My_Project.Resources.resources
+C:\Hassan\AL-Zara\Garden APP\obj\x64\Debug\GardenAPP.Properties.Resources.resources
+C:\Hassan\AL-Zara\Garden APP\obj\x64\Debug\GardenAPP.csproj.GenerateResource.cache
+C:\Hassan\AL-Zara\Garden APP\obj\x64\Debug\GardenAPP.csproj.CoreCompileInputs.cache
+C:\Hassan\AL-Zara\Garden APP\bin\x64\Debug\GardenAPP.exe.config
+C:\Hassan\AL-Zara\Garden APP\bin\x64\Debug\GardenAPP.exe
+C:\Hassan\AL-Zara\Garden APP\bin\x64\Debug\GardenAPP.pdb
+C:\Hassan\AL-Zara\Garden APP\bin\x64\Debug\CashInOut.xml
+C:\Hassan\AL-Zara\Garden APP\bin\x64\Debug\Newtonsoft.Json.dll
+C:\Hassan\AL-Zara\Garden APP\bin\x64\Debug\Newtonsoft.Json.xml
+C:\Hassan\AL-Zara\Garden APP\bin\x64\Debug\Interop.Microsoft.Office.Core.dll
+C:\Hassan\AL-Zara\Garden APP\obj\x64\Debug\GardenAPP.csproj.Up2Date
+C:\Hassan\AL-Zara\Garden APP\obj\x64\Debug\GardenAPP.exe
+C:\Hassan\AL-Zara\Garden APP\obj\x64\Debug\GardenAPP.pdb
+C:\Huzaifa Mumtaz\Gardening App\New updated Addon\bin\x64\Debug\GardenAPP.exe.config
+C:\Huzaifa Mumtaz\Gardening App\New updated Addon\bin\x64\Debug\GardenAPP.exe
+C:\Huzaifa Mumtaz\Gardening App\New updated Addon\bin\x64\Debug\GardenAPP.pdb
+C:\Huzaifa Mumtaz\Gardening App\New updated Addon\bin\x64\Debug\CashInOut.xml
+C:\Huzaifa Mumtaz\Gardening App\New updated Addon\bin\x64\Debug\Newtonsoft.Json.dll
+C:\Huzaifa Mumtaz\Gardening App\New updated Addon\bin\x64\Debug\Newtonsoft.Json.xml
+C:\Huzaifa Mumtaz\Gardening App\New updated Addon\bin\x64\Debug\Interop.Microsoft.Office.Core.dll
+C:\Huzaifa Mumtaz\Gardening App\New updated Addon\obj\x64\Debug\GardenAPP.csproj.AssemblyReference.cache
+C:\Huzaifa Mumtaz\Gardening App\New updated Addon\obj\x64\Debug\Interop.Microsoft.Office.Core.dll
+C:\Huzaifa Mumtaz\Gardening App\New updated Addon\obj\x64\Debug\Interop.SAPbobsCOM.dll
+C:\Huzaifa Mumtaz\Gardening App\New updated Addon\obj\x64\Debug\Interop.SAPbouiCOM.dll
+C:\Huzaifa Mumtaz\Gardening App\New updated Addon\obj\x64\Debug\GardenAPP.csproj.ResolveComReference.cache
+C:\Huzaifa Mumtaz\Gardening App\New updated Addon\obj\x64\Debug\GardenAPP.My_Project.Resources.resources
+C:\Huzaifa Mumtaz\Gardening App\New updated Addon\obj\x64\Debug\GardenAPP.Properties.Resources.resources
+C:\Huzaifa Mumtaz\Gardening App\New updated Addon\obj\x64\Debug\GardenAPP.csproj.GenerateResource.cache
+C:\Huzaifa Mumtaz\Gardening App\New updated Addon\obj\x64\Debug\GardenAPP.csproj.CoreCompileInputs.cache
+C:\Huzaifa Mumtaz\Gardening App\New updated Addon\obj\x64\Debug\GardenAPP.csproj.Up2Date
+C:\Huzaifa Mumtaz\Gardening App\New updated Addon\obj\x64\Debug\GardenAPP.exe
+C:\Huzaifa Mumtaz\Gardening App\New updated Addon\obj\x64\Debug\GardenAPP.pdb

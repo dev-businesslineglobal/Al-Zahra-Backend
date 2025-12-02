@@ -1,0 +1,886 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+	<assembly>
+		<name>BISK_API</name>
+	</assembly>
+	<members>
+
+		<!-- ============================== LOGIN CONTROLLER ============================== -->
+		<member name="M:Bisk_APIS.Controllers.LoginController.Login(Bisk_APIS.Model.LoginRequest,System.Threading.CancellationToken)">
+			<summary>Authenticate user and return a JWT.</summary>
+			<remarks>
+				<div style="margin:16px 0 18px 0; line-height:1.6;">
+					<div style="font-weight:700;font-size:15px;margin-bottom:8px;">Overview</div>
+					<div>Validates credentials and returns a signed JSON Web Token.</div>
+				</div>
+
+				<div style="margin:16px 0 18px 0;">
+					<div style="font-weight:700;font-size:15px;margin-bottom:8px;">Request (mandatory fields only)</div>
+					<pre style="padding:12px;background:#0b102117;border:1px solid #e5e7eb;border-radius:12px;">
+						<code language="json">
+							{
+							"username": "api.admin",
+							"password": "P@ssw0rd!"
+							}
+						</code>
+					</pre>
+				</div>
+
+				<div style="margin:16px 0 18px 0;">
+					<div style="font-weight:700;font-size:15px;margin-bottom:8px;">Response Example</div>
+					<table style="border-collapse:separate;border-spacing:0;width:100%;max-width:980px;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;background:#fff;">
+						<thead>
+							<tr>
+								<th style="text-align:left;padding:12px 10px;border-bottom:1px solid #e5e7eb;background:#f9fafb;">Code</th>
+								<th style="text-align:left;padding:12px 10px;border-bottom:1px solid #e5e7eb;background:#f9fafb;">Example</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td style="padding:12px 10px;vertical-align:top;">
+									<span style="display:inline-block;padding:3px 10px;border-radius:999px;border:1px solid #16a34a;color:#16a34a;">200</span>
+								</td>
+								<td style="padding:12px 10px;vertical-align:top;">
+									<pre style="margin:0;padding:12px;background:#0b102117;border:1px solid #e5e7eb;border-radius:12px;">
+										<code language="json">
+											{
+											"success": true,
+											"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9*********",
+											"message": "Login successful"
+											}
+										</code>
+									</pre>
+								</td>
+							</tr>
+							<tr>
+								<td style="padding:12px 10px;vertical-align:top;">
+									<span style="display:inline-block;padding:3px 10px;border-radius:999px;border:1px solid #ef4444;color:#ef4444;">401</span>
+								</td>
+								<td style="padding:12px 10px;vertical-align:top;">
+									<pre style="margin:0;padding:12px;background:#0b102117;border:1px solid #e5e7eb;border-radius:12px;">
+										<code language="json">
+											{
+											"success": false,
+											"token": null,
+											"message": "Invalid username or password"
+											}
+										</code>
+									</pre>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</remarks>
+			<response code="200">Returns JWT if credentials are valid.</response>
+			<response code="401">Invalid credentials.</response>
+		</member>
+
+		<!-- ============================== ITEM (CREATE) ============================== -->
+		<member name="M:Bisk_APIS.Controllers.PostingController.PostItem(BISK_API.Model.ItemMaster,System.Threading.CancellationToken)">
+			<summary>
+				Create Item (Service Layer: <c>Items</c>).
+			</summary>
+			<remarks>
+				<div style="display:grid;gap:14px;line-height:1.55;">
+
+					<!-- Header -->
+					<div style="border:1px solid #e5e7eb;border-radius:12px;padding:14px;background:#ffffff;">
+						<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+							<span style="font-weight:700;font-size:15px;">Overview</span>
+							<span style="font-size:12px;padding:2px 8px;border:1px solid #22c55e;color:#16a34a;border-radius:999px;background:#f0fdf4;">
+								POST /posting/items
+							</span>
+						</div>
+						<div style="color:#475569;margin-top:6px;">Creates a new Inventory Item in SAP B1 via Service Layer.</div>
+					</div>
+
+					<!-- Required fields -->
+					<div style="border:1px solid #e5e7eb;border-radius:12px;padding:14px;background:#ffffff;">
+						<div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+							<span style="font-weight:700;font-size:14px;">Required fields</span>
+							<span style="font-size:11px;padding:2px 8px;border:1px solid #94a3b8;color:#334155;border-radius:999px;background:#f8fafc;">
+								ItemMaster
+							</span>
+						</div>
+
+						<ul style="margin:0 0 0 18px;line-height:1.7;">
+							<li style="margin:6px 0;">
+								<span style="display:inline-flex;align-items:center;gap:10px;">
+									<code>itemCode</code>
+									<span style="font-size:12px;padding:2px 8px;border:1px solid #cbd5e1;border-radius:999px;background:#f8fafc;color:#475569;">string</span>
+								</span>
+							</li>
+							<li style="margin:6px 0;">
+								<span style="display:inline-flex;align-items:center;gap:10px;">
+									<code>itemName</code>
+									<span style="font-size:12px;padding:2px 8px;border:1px solid #cbd5e1;border-radius:999px;background:#f8fafc;color:#475569;">string</span>
+								</span>
+							</li>
+							<li style="margin:6px 0;">
+								<span style="display:inline-flex;align-items:center;gap:10px;">
+									<code>itemsGroupCode</code>
+									<span style="font-size:12px;padding:2px 8px;border:1px solid #cbd5e1;border-radius:999px;background:#f8fafc;color:#475569;">number</span>
+								</span>
+							</li>
+						
+						</ul>
+					</div>
+
+					<!-- Request -->
+					<div style="border:1px solid #e5e7eb;border-radius:12px;padding:14px;background:#ffffff;">
+						<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+							<span style="font-weight:700;font-size:14px;">Request</span>
+							<span style="font-size:12px;padding:2px 8px;border:1px solid #0ea5e9;color:#0284c7;border-radius:999px;background:#ecfeff;">application/json</span>
+						</div>
+						<pre style="margin:0;padding:12px;background:#0b102117;border:1px solid #e5e7eb;border-radius:10px;overflow:auto;">
+							<code language="json">
+								{
+								"itemCode": "INV-100731",
+								"itemName": "Notebook A5",
+								"itemsGroupCode": 105,
+								"barCode": "1234567890123",
+								"inventoryItem": "Y",
+								"salesItem": "Y",
+								"purchaseItem": "Y",
+								"uomGroupEntry": 1
+								}
+							</code>
+						</pre>
+					</div>
+
+					<!-- Responses -->
+					<div style="display:grid;gap:12px;">
+						<!-- Success -->
+						<div style="border:1px solid #e5e7eb;border-radius:12px;padding:14px;background:#ffffff;">
+							<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+								<span style="font-weight:700;font-size:14px;">Success</span>
+								<span style="font-size:12px;padding:2px 8px;border:1px solid #22c55e;color:#16a34a;border-radius:999px;background:#f0fdf4;">201 Created</span>
+							</div>
+							<pre style="margin:0;padding:12px;background:#0b102117;border:1px solid #e5e7eb;border-radius:10px;overflow:auto;">
+								<code language="json">
+									{
+									"success": true,
+									"data": { "itemCode": "INV-100731", "itemName": "Notebook A5" },
+									"error": null
+									}
+								</code>
+							</pre>
+						</div>
+
+						<!-- Error -->
+						<div style="border:1px solid #e5e7eb;border-radius:12px;padding:14px;background:#ffffff;">
+							<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+								<span style="font-weight:700;font-size:14px;">Error</span>
+								<span style="font-size:12px;padding:2px 8px;border:1px solid #ef4444;color:#ef4444;border-radius:999px;background:#fef2f2;">400 Bad Request</span>
+							</div>
+							<pre style="margin:0;padding:12px;background:#0b102117;border:1px solid #e5e7eb;border-radius:10px;overflow:auto;">
+								<code language="json">
+									{
+									"success": false,
+									"data": null,
+									"error": "Invalid item group"
+									}
+								</code>
+							</pre>
+						</div>
+					</div>
+
+				</div>
+			</remarks>
+			<response code="201">Created.</response>
+			<response code="400">Invalid payload.</response>
+			<response code="500">Service Layer error.</response>
+		</member>
+
+
+		<!-- ============================== BUSINESS PARTNER (CREATE) ============================== -->
+		<member name="M:Bisk_APIS.Controllers.PostingController.PostBP(Bisk_APIS.Model.BusinessPartner,System.Threading.CancellationToken)">
+			<summary>Create Business Partner (Student).</summary>
+			<remarks>
+				<div style="display:grid;gap:14px;line-height:1.55;">
+
+					<!-- Header -->
+					<div style="border:1px solid #e5e7eb;border-radius:12px;padding:14px;background:#ffffff;">
+						<div style="display:flex;align-items:center;gap:8px;">
+							<span style="font-weight:700;font-size:15px;">Overview</span>
+							<span style="font-size:12px;padding:2px 8px;border:1px solid #22c55e;color:#16a34a;border-radius:999px;background:#f0fdf4;">POST /posting/bp</span>
+						</div>
+						<div style="color:#475569;margin-top:6px;">Creates a BP (student) record in SAP B1 via Service Layer.</div>
+					</div>
+
+					<!-- Requirements -->
+					<div style="border:1px solid #e5e7eb;border-radius:12px;padding:14px;background:#ffffff;">
+						<div style="font-weight:700;font-size:14px;margin-bottom:8px;">Required fields</div>
+						<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;">
+							<div style="border:1px dashed #e5e7eb;border-radius:10px;padding:10px;">
+								<div style="font-size:12px;color:#64748b;">string</div>
+								<div style="font-weight:600;">
+									<code>cardCode</code>
+								</div>
+							</div>
+							<div style="border:1px dashed #e5e7eb;border-radius:10px;padding:10px;">
+								<div style="font-size:12px;color:#64748b;">string</div>
+								<div style="font-weight:600;">
+									<code>cardName</code>
+								</div>
+							</div>	<div style="border:1px dashed #e5e7eb;border-radius:10px;padding:10px;">
+								<div style="font-size:12px;color:#64748b;">string</div>
+								<div style="font-weight:600;">
+									<code>U_Academic</code>
+								</div>
+							</div>
+							<div style="border:1px dashed #e5e7eb;border-radius:10px;padding:10px;">
+								<div style="font-size:12px;color:#64748b;">enum</div>
+								<div style="font-weight:600;">
+									<code>cardType</code> (e.g., <code>cCustomer</code>)
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Request -->
+					<div style="border:1px solid #e5e7eb;border-radius:12px;padding:14px;background:#ffffff;">
+						<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+							<span style="font-weight:700;font-size:14px;">Request</span>
+							<span style="font-size:12px;padding:2px 8px;border:1px solid #0ea5e9;color:#0284c7;border-radius:999px;background:#ecfeff;">application/json</span>
+						</div>
+						<pre style="margin:0;padding:12px;background:#0b102117;border:1px solid #e5e7eb;border-radius:10px;overflow:auto;">
+							<code language="json">
+								{
+								"cardCode": "STU-0001",
+								"cardName": "Ali Khan",
+								"cardType": "cCustomer",
+								"U_Academic": "2025-2026"
+								}
+							</code>
+						</pre>
+					</div>
+
+					<!-- Responses -->
+					<div style="display:grid;gap:12px;">
+						<div style="border:1px solid #e5e7eb;border-radius:12px;padding:14px;background:#ffffff;">
+							<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+								<span style="font-weight:700;font-size:14px;">Success</span>
+								<span style="font-size:12px;padding:2px 8px;border:1px solid #22c55e;color:#16a34a;border-radius:999px;background:#f0fdf4;">201 Created</span>
+							</div>
+							<pre style="margin:0;padding:12px;background:#0b102117;border:1px solid #e5e7eb;border-radius:10px;overflow:auto;">
+								<code language="json">
+									{
+									"success": true,
+									"data": { "studentCode": "STU-0001", "studentName": "Ali Khan" },
+									"error": null
+									}
+								</code>
+							</pre>
+						</div>
+
+						<div style="border:1px solid #e5e7eb;border-radius:12px;padding:14px;background:#ffffff;">
+							<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+								<span style="font-weight:700;font-size:14px;">Error</span>
+								<span style="font-size:12px;padding:2px 8px;border:1px solid #ef4444;color:#ef4444;border-radius:999px;background:#fef2f2;">400 Bad Request</span>
+							</div>
+							<pre style="margin:0;padding:12px;background:#0b102117;border:1px solid #e5e7eb;border-radius:10px;overflow:auto;">
+								<code language="json">
+									{
+									"success": false,
+									"data": null,
+									"error": "Duplicate BP code"
+									}
+								</code>
+							</pre>
+						</div>
+					</div>
+				</div>
+			</remarks>
+			<response code="201">Created.</response>
+			<response code="400">Invalid payload.</response>
+		</member>
+
+		<!-- ============================== BUSINESS PARTNER (PATCH) ============================== -->
+		<member name="M:Bisk_APIS.Controllers.PostingController.PatchBP(System.String,Bisk_APIS.Model.BusinessPartnerPatch,System.Threading.CancellationToken)">
+			<summary>
+				Patch Business Partner by <c>cardCode</c>.
+			</summary>
+			<remarks>
+				<div style="display:grid;gap:14px;line-height:1.55;">
+
+					<!-- Header -->
+					<div style="border:1px solid #e5e7eb;border-radius:12px;padding:14px;background:#ffffff;">
+						<div style="display:flex;align-items:center;gap:8px;">
+							<span style="font-weight:700;font-size:15px;">Overview</span>
+							<span style="font-size:12px;padding:2px 8px;border:1px solid #f59e0b;color:#b45309;border-radius:999px;background:#fffbeb;">PATCH /posting/bp/{cardCode}</span>
+						</div>
+						<div style="color:#475569;margin-top:6px;">Updates one or more fields of an existing BP.</div>
+					</div>
+
+					<!-- Path & Body requirements -->
+					<div style="border:1px solid #e5e7eb;border-radius:12px;padding:14px;background:#ffffff;">
+						<div style="font-weight:700;font-size:14px;margin-bottom:8px;">Requirements</div>
+						<ul style="margin:0 0 0 18px;">
+							<li>
+								Path param: <code>cardCode</code>
+							</li>
+							<li>Body: any subset of updatable fields (partial)</li>
+						</ul>
+					</div>
+
+					<!-- Request -->
+					<div style="border:1px solid #e5e7eb;border-radius:12px;padding:14px;background:#ffffff;">
+						<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+							<span style="font-weight:700;font-size:14px;">Request</span>
+							<span style="font-size:12px;padding:2px 8px;border:1px solid #0ea5e9;color:#0284c7;border-radius:999px;background:#ecfeff;">application/json</span>
+						</div>
+						<pre style="margin:0;padding:12px;background:#0b102117;border:1px solid #e5e7eb;border-radius:10px;overflow:auto;">
+							<code language="json">
+								{
+								"cardName": "Ali Khan (Updated)"
+								}
+							</code>
+						</pre>
+					</div>
+
+					<!-- Responses -->
+					<div style="display:grid;gap:12px;">
+						<div style="border:1px solid #e5e7eb;border-radius:12px;padding:14px;background:#ffffff;">
+							<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+								<span style="font-weight:700;font-size:14px;">Success</span>
+								<span style="font-size:12px;padding:2px 8px;border:1px solid #22c55e;color:#16a34a;border-radius:999px;background:#f0fdf4;">200 OK</span>
+							</div>
+							<pre style="margin:0;padding:12px;background:#0b102117;border:1px solid #e5e7eb;border-radius:10px;overflow:auto;">
+								<code language="json">
+									{
+									"success": true,
+									"data": { "studentCode": "STU-0001", "studentName": "Ali Khan (Updated)" },
+									"error": null
+									}
+								</code>
+							</pre>
+						</div>
+
+						<div style="border:1px solid #e5e7eb;border-radius:12px;padding:14px;background:#ffffff;">
+							<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+								<span style="font-weight:700;font-size:14px;">Error</span>
+								<span style="font-size:12px;padding:2px 8px;border:1px solid #ef4444;color:#ef4444;border-radius:999px;background:#fef2f2;">404 Not Found</span>
+							</div>
+							<pre style="margin:0;padding:12px;background:#0b102117;border:1px solid #e5e7eb;border-radius:10px;overflow:auto;">
+								<code language="json">
+									{
+									"success": false,
+									"data": null,
+									"error": "BP not found"
+									}
+								</code>
+							</pre>
+						</div>
+
+						<div style="border:1px solid #e5e7eb;border-radius:12px;padding:14px;background:#ffffff;">
+							<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+								<span style="font-weight:700;font-size:14px;">Error</span>
+								<span style="font-size:12px;padding:2px 8px;border:1px solid #ef4444;color:#ef4444;border-radius:999px;background:#fef2f2;">400 Bad Request</span>
+							</div>
+							<pre style="margin:0;padding:12px;background:#0b102117;border:1px solid #e5e7eb;border-radius:10px;overflow:auto;">
+								<code language="json">
+									{
+									"success": false,
+									"data": null,
+									"error": "Invalid payload"
+									}
+								</code>
+							</pre>
+						</div>
+					</div>
+				</div>
+			</remarks>
+			<response code="200">Updated.</response>
+			<response code="404">BP not found.</response>
+		</member>
+
+		<!-- ============================== SALES ORDER ============================== -->
+		<member name="M:Bisk_APIS.Controllers.PostingController.PostOrder(BISK_API.Model.Document,System.Threading.CancellationToken)">
+			<summary>
+				Create Sales Order (Service Layer: <c>Orders</c>).
+			</summary>
+			<remarks>
+				<div style="margin:16px 0 18px 0; line-height:1.6;">
+
+					<details>
+						<summary style="font-weight:700;font-size:15px;cursor:pointer;margin-bottom:8px;">
+							Request (mandatory fields only)
+						</summary>
+						<pre style="padding:12px;background:#0b102117;border:1px solid #e5e7eb;border-radius:12px;">
+							<code language="json">
+								{
+								"docDate": "2025-09-28T00:00:00",
+								"docDueDate": "2025-12-28T00:00:00",
+								"cardCode": "H230199",
+								"documentLines": [
+								{
+								"itemCode": "INV-100731",
+								"quantity": 10,
+								"warehouseCode": "BISK-001"
+								},
+								{
+								"itemCode": "INV-100731",
+								"quantity": 5,
+								"warehouseCode": "BISK-001"
+								}
+								]
+								}
+							</code>
+						</pre>
+					</details>
+
+					<details>
+						<summary style="font-weight:700;font-size:15px;cursor:pointer;margin-bottom:8px;">
+							 Order 
+						</summary>
+						<pre style="padding:12px;background:#0b102117;border:1px solid #e5e7eb;border-radius:12px;">
+							<code language="json">
+								{
+								"docDate": "2025-09-28T00:00:00",
+								"docDueDate": "2025-12-28T00:00:00",
+								"taxDate": "2025-09-28T00:00:00",
+								"cardCode": "H230199",
+								"comments": "Sales order with installments",
+								"series": null,
+								"documentLines": [
+								{
+								"itemCode": "INV-100731",
+								"quantity": 10,
+								"unitPrice": 50,
+								"discountPercent": 5,
+								"warehouseCode": "BISK-001",
+								},
+								{
+								"itemCode": "INV-100731",
+								"quantity": 5,
+								"unitPrice": 100,
+								"discountPercent": 0,
+								"warehouseCode": "BISK-001",
+								}
+								]
+								}
+							</code>
+						</pre>
+					</details>
+
+				</div>
+			</remarks>
+			
+			<response code="201">Created.</response>
+			<response code="400">Invalid payload.</response>
+			<response code="500">Service Layer error.</response>
+		</member>
+
+		<!-- ============================== AR INVOICE ============================== -->
+		<member name="M:Bisk_APIS.Controllers.PostingController.PostInvoice(BISK_API.Model.Document,System.Threading.CancellationToken)">
+			<summary>
+				Create AR Invoice (Service Layer: <c>Invoices</c>).
+			</summary>
+			<remarks>
+				<div style="margin:16px 0 18px 0; line-height:1.6;">
+
+					<details>
+						<summary style="font-weight:700;font-size:15px;cursor:pointer;margin-bottom:8px;">
+							Request (mandatory fields only)
+						</summary>
+						<pre style="padding:12px;background:#0b102117;border:1px solid #e5e7eb;border-radius:12px;">
+							<code language="json">
+								{
+								"docDate": "2025-09-28T00:00:00",
+								"docDueDate": "2025-12-28T00:00:00",
+								"cardCode": "H230199",
+								"documentLines": [
+								{
+								"itemCode": "INV-100731",
+								"quantity": 10,
+								"warehouseCode": "BISK-001"
+								},
+								{
+								"itemCode": "INV-100731",
+								"quantity": 5,
+								"warehouseCode": "BISK-001"
+								}
+								]
+								}
+							</code>
+						</pre>
+					</details>
+
+					<details>
+						<summary style="font-weight:700;font-size:15px;cursor:pointer;margin-bottom:8px;">
+							Invoice on Basis of Sale Order With Installments
+						</summary>
+						<pre style="padding:12px;background:#0b102117;border:1px solid #e5e7eb;border-radius:12px;">
+							<code language="json">
+								{
+								"docDate": "2025-09-28T00:00:00",
+								"docDueDate": "2025-12-28T00:00:00",
+								"cardCode": "H230199",
+								"comments": "Sales order with installments",
+								"series": null,
+								"taxDate": "2025-09-28T00:00:00",
+								"documentLines": [
+								{
+								"itemCode": "INV-100731",
+								"quantity": 10,
+								"unitPrice": 50,
+								"discountPercent": 5,
+								"warehouseCode": "BISK-001",
+								"baseType": 17,
+								"baseEntry": 200,
+								"baseLine": 0
+								},
+								{
+								"itemCode": "INV-100731",
+								"quantity": 5,
+								"unitPrice": 100,
+								"discountPercent": 0,
+								"warehouseCode": "BISK-001",
+								"baseType": 17,
+								"baseEntry": 200,
+								"baseLine": 1
+								}
+								],
+								"documentInstallments": [
+								{ "dueDate": "2025-10-28T00:00:00", "total": 500},
+								{ "dueDate": "2025-11-28T00:00:00", "total": 500},
+								{ "dueDate": "2025-12-28T00:00:00", "total": 700}
+								]
+								}
+							</code>
+						</pre>
+					</details>
+
+				</div>
+			</remarks>
+			<response code="201">Created.</response>
+			<response code="400">Invalid payload.</response>
+			<response code="500">Service Layer error.</response>
+		</member>
+
+		<!-- ============================== CREDIT MEMO ============================== -->
+		<member name="M:Bisk_APIS.Controllers.PostingController.PostCredit(BISK_API.Model.Document,System.Threading.CancellationToken)">
+			<summary>
+				Create AR Credit Memo (Service Layer: <c>CreditNotes</c>).
+			</summary>
+			<remarks>
+				<div style="margin:16px 0 18px 0; line-height:1.6;">
+
+					<details>
+						<summary style="font-weight:700;font-size:15px;cursor:pointer;margin-bottom:8px;">
+							Request (mandatory fields only)
+						</summary>
+						<pre style="padding:12px;background:#0b102117;border:1px solid #e5e7eb;border-radius:12px;">
+							<code language="json">
+								{
+								"docDate": "2025-09-28T00:00:00",
+								"docDueDate": "2025-12-28T00:00:00",
+								"cardCode": "H230199",
+								"documentLines": [
+								{
+								"itemCode": "INV-100731",
+								"quantity": 10,
+								"warehouseCode": "BISK-001"
+								},
+								{
+								"itemCode": "INV-100731",
+								"quantity": 5,
+								"warehouseCode": "BISK-001"
+								}
+								]
+								}
+							</code>
+						</pre>
+					</details>
+
+					<details>
+						<summary style="font-weight:700;font-size:15px;cursor:pointer;margin-bottom:8px;">
+							Credit Note on Basis of Invoice
+						</summary>
+						<pre style="padding:12px;background:#0b102117;border:1px solid #e5e7eb;border-radius:12px;">
+							<code language="json">
+								{
+								"docDate": "2025-09-28T00:00:00",
+								"docDueDate": "2025-12-28T00:00:00",
+								"cardCode": "H230199",
+								"comments": "Sales order with installments",
+								"series": null,
+								"taxDate": "2025-09-28T00:00:00",
+								"documentLines": [
+								{
+								"itemCode": "INV-100731",
+								"quantity": 10,
+								"unitPrice": 50,
+								"discountPercent": 5,
+								"warehouseCode": "BISK-001",
+								"baseType": 13,
+								"baseEntry": 118,
+								"baseLine": 0
+								},
+								{
+								"itemCode": "INV-100731",
+								"quantity": 5,
+								"unitPrice": 100,
+								"discountPercent": 0,
+								"warehouseCode": "BISK-001",
+								"baseType": 13,
+								"baseEntry": 118,
+								"baseLine": 1
+								}
+								],
+								"documentInstallments": [
+								{ "dueDate": "2025-10-28T00:00:00", "total": 500},
+								{ "dueDate": "2025-11-28T00:00:00", "total": 500},
+								{ "dueDate": "2025-12-28T00:00:00", "total": 700}
+								]
+								}
+							</code>
+						</pre>
+					</details>
+
+				</div>
+			</remarks>
+			<response code="201">
+				Created.
+				<remarks>
+					<div style="margin:12px 0; line-height:1.6;">
+						<div style="font-weight:700;font-size:14px;margin-bottom:6px;">Response Body</div>
+						<pre style="padding:12px;background:#0b102117;border:1px solid #e5e7eb;border-radius:12px;">
+							<code language="json">
+								{
+								""success"": true,
+								""data"": { ""documentEntry"": 345, ""docNumber"": 900 },
+								""error"": null
+								}
+							</code>
+						</pre>
+					</div>
+				</remarks>
+			</response>
+			<response code="400">Invalid payload.</response>
+			<response code="500">Service Layer error.</response>
+		</member>
+
+		<!-- ============================== GOODS ISSUE ============================== -->
+		<member name="M:Bisk_APIS.Controllers.PostingController.PostGoodsIssue(BISK_API.Model.GoodsIssue,System.Threading.CancellationToken)">
+			<summary>Create Goods Issue (InventoryGenExits).</summary>
+			<remarks>
+				<div style="margin:16px 0 18px 0;">
+					<div style="font-weight:700;font-size:15px;margin-bottom:8px;">Request (mandatory fields only)</div>
+					<pre style="padding:12px;background:#0b102117;border:1px solid #e5e7eb;border-radius:12px;">
+						<code language="json">
+							{
+							"docDate": "2025-09-28",
+							"documentLines": [
+							{ "itemCode": "ITM-004", "quantity": 1, "warehouseCode": "01" }
+							]
+							}
+						</code>
+					</pre>
+				</div>
+			</remarks>
+			<response code="201">Created.</response>
+			<response code="400">Invalid payload.</response>
+			<response code="500">Service Layer error.</response>
+		</member>
+
+		<!-- ============================== INCOMING PAYMENT ============================== -->
+		<member name="M:Bisk_APIS.Controllers.PostingController.PostIncomingPayment(BISK_API.Model.IncomingPayment,System.Threading.CancellationToken)">
+			<summary>Create Incoming Payment.</summary>
+			<remarks>
+				<div style="margin:16px 0 18px 0;">
+					<details>
+						<summary style="font-weight:700;font-size:15px;cursor:pointer;">Request (Cash Only)</summary>
+						<pre style="padding:12px;background:#0b102117;border:1px solid #e5e7eb;border-radius:12px;">
+							<code language="json">
+								{
+								"docType": "rCustomer",
+								"docDate": "2025-09-29",
+								"cardCode": "C20001",
+								"cashAccount": "100100",
+								"cashSum": 1500.00,
+								"paymentInvoices": [
+								{
+								"docEntry": 12345,
+								"sumApplied": 1500.00
+								}
+								],
+								"paymentCreditCards": []
+								}
+							</code>
+						</pre>
+					</details>
+				</div>
+
+				<div style="margin:16px 0 18px 0;">
+					<details>
+						<summary style="font-weight:700;font-size:15px;cursor:pointer;">Request (Credit Card Only)</summary>
+						<pre style="padding:12px;background:#0b102117;border:1px solid #e5e7eb;border-radius:12px;">
+							<code language="json">
+								{
+								"docType": "rCustomer",
+								"docDate": "2025-09-29",
+								"cardCode": "C20002",
+								"paymentInvoices": [
+								{
+								"docEntry": 12346,
+								"sumApplied": 2000.00
+								}
+								],
+								"paymentCreditCards": [
+								{
+								"creditCard": 1,
+								"creditAcct": "200200",
+								"creditCardNumber": "4111111111111111",
+								"cardValidUntil": "2026-12-31",
+								"voucherNum": "VC12345",
+								"creditSum": 2000.00
+								}
+								]
+								}
+							</code>
+						</pre>
+					</details>
+				</div>
+
+				<div style="margin:16px 0 18px 0;">
+					<details>
+						<summary style="font-weight:700;font-size:15px;cursor:pointer;">Request (Cash + Credit Card)</summary>
+						<pre style="padding:12px;background:#0b102117;border:1px solid #e5e7eb;border-radius:12px;">
+							<code language="json">
+								{
+								"docType": "rCustomer",
+								"docDate": "2025-09-29",
+								"cardCode": "C20003",
+								"cashAccount": "100100",
+								"cashSum": 1000.00,
+								"paymentInvoices": [
+								{
+								"docEntry": 12347,
+								"sumApplied": 2500.00
+								}
+								],
+								"paymentCreditCards": [
+								{
+								"creditCard": 2,
+								"creditAcct": "200200",
+								"creditCardNumber": "5500000000000004",
+								"cardValidUntil": "2027-05-31",
+								"voucherNum": "VC67890",
+								"creditSum": 1500.00
+								}
+								]
+								}
+							</code>
+						</pre>
+					</details>
+				</div>
+			</remarks>
+
+			<response code="201">Created.</response>
+			<response code="400">Invalid payload.</response>
+			<response code="500">Service Layer error.</response>
+		</member>
+
+		<!-- ============================== OUTGOING PAYMENT ============================== -->
+		<member name="M:Bisk_APIS.Controllers.PostingController.PostOutgoingPayment(BISK_API.Model.IncomingPayment,System.Threading.CancellationToken)">
+			<summary>Create Outgoing Payment.</summary>
+			<remarks>
+				<div style="margin:16px 0 18px 0;">
+					<details>
+						<summary style="font-weight:700;font-size:15px;cursor:pointer;">Request (Cash Only)</summary>
+						<pre style="padding:12px;background:#0b102117;border:1px solid #e5e7eb;border-radius:12px;">
+							<code language="json">
+								{
+								"docType": "rCustomer",
+								"docDate": "2025-09-29",
+								"cardCode": "C20001",
+								"cashAccount": "100100",
+								"cashSum": 1500.00,
+								"paymentInvoices": [
+								{
+								"docEntry": 12345,
+								"sumApplied": 1500.00
+								}
+								],
+								"paymentCreditCards": []
+								}
+							</code>
+						</pre>
+					</details>
+				</div>
+
+				<div style="margin:16px 0 18px 0;">
+					<details>
+						<summary style="font-weight:700;font-size:15px;cursor:pointer;">Request (Credit Card Only)</summary>
+						<pre style="padding:12px;background:#0b102117;border:1px solid #e5e7eb;border-radius:12px;">
+							<code language="json">
+								{
+								"docType": "rCustomer",
+								"docDate": "2025-09-29",
+								"cardCode": "C20002",
+								"paymentInvoices": [
+								{
+								"docEntry": 12346,
+								"sumApplied": 2000.00
+								}
+								],
+								"paymentCreditCards": [
+								{
+								"creditCard": 1,
+								"creditAcct": "200200",
+								"creditCardNumber": "4111111111111111",
+								"cardValidUntil": "2026-12-31",
+								"voucherNum": "VC12345",
+								"creditSum": 2000.00
+								}
+								]
+								}
+							</code>
+						</pre>
+					</details>
+				</div>
+
+				<div style="margin:16px 0 18px 0;">
+					<details>
+						<summary style="font-weight:700;font-size:15px;cursor:pointer;">Request (Cash + Credit Card)</summary>
+						<pre style="padding:12px;background:#0b102117;border:1px solid #e5e7eb;border-radius:12px;">
+							<code language="json">
+								{
+								"docType": "rCustomer",
+								"docDate": "2025-09-29",
+								"cardCode": "C20003",
+								"cashAccount": "100100",
+								"cashSum": 1000.00,
+								"paymentInvoices": [
+								{
+								"docEntry": 12347,
+								"sumApplied": 2500.00
+								}
+								],
+								"paymentCreditCards": [
+								{
+								"creditCard": 2,
+								"creditAcct": "200200",
+								"creditCardNumber": "5500000000000004",
+								"cardValidUntil": "2027-05-31",
+								"voucherNum": "VC67890",
+								"creditSum": 1500.00
+								}
+								]
+								}
+							</code>
+						</pre>
+					</details>
+				</div>
+			</remarks>
+
+			<response code="201">Created.</response>
+			<response code="400">Invalid payload.</response>
+			<response code="500">Service Layer error.</response>
+		</member>
+
+	</members>
+</doc>

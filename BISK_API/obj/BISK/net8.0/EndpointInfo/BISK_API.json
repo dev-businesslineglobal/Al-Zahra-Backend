@@ -1,0 +1,1111 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "WEBAPI",
+    "version": "v1"
+  },
+  "paths": {
+    "/api/v1/auth/login": {
+      "post": {
+        "tags": [
+          "Login"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/v1/Items": {
+      "get": {
+        "tags": [
+          "Masters"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/v1/Students": {
+      "get": {
+        "tags": [
+          "Masters"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/v1/StudentInvoices": {
+      "get": {
+        "tags": [
+          "Masters"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/v1/StudentRefunds": {
+      "get": {
+        "tags": [
+          "Masters"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/v1/IncomingPayments": {
+      "get": {
+        "tags": [
+          "Masters"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/v1/OutgoingPayments": {
+      "get": {
+        "tags": [
+          "Masters"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/v1/posting/items": {
+      "post": {
+        "tags": [
+          "Posting"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ItemMaster"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ItemMaster"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ItemMaster"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/v1/posting/items/{itemCode}": {
+      "patch": {
+        "tags": [
+          "Posting"
+        ],
+        "parameters": [
+          {
+            "name": "itemCode",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ItemMasterPatch"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ItemMasterPatch"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ItemMasterPatch"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/v1/posting/bp": {
+      "post": {
+        "tags": [
+          "Posting"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BusinessPartner"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BusinessPartner"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/BusinessPartner"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/v1/posting/bp/{cardCode}": {
+      "patch": {
+        "tags": [
+          "Posting"
+        ],
+        "parameters": [
+          {
+            "name": "cardCode",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BusinessPartnerPatch"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BusinessPartnerPatch"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/BusinessPartnerPatch"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/v1/posting/orders": {
+      "post": {
+        "tags": [
+          "Posting"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Document"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Document"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Document"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/v1/posting/invoices": {
+      "post": {
+        "tags": [
+          "Posting"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Document"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Document"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Document"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/v1/posting/creditnotes": {
+      "post": {
+        "tags": [
+          "Posting"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Document"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Document"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Document"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/v1/posting/inventory/genexits": {
+      "post": {
+        "tags": [
+          "Posting"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GoodsIssue"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GoodsIssue"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GoodsIssue"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/v1/posting/payments/incoming": {
+      "post": {
+        "tags": [
+          "Posting"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IncomingPayment"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IncomingPayment"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/IncomingPayment"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/v1/posting/payments/outgoing": {
+      "post": {
+        "tags": [
+          "Posting"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IncomingPayment"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IncomingPayment"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/IncomingPayment"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Bpaddress": {
+        "type": "object",
+        "properties": {
+          "addressName": {
+            "type": "string",
+            "nullable": true
+          },
+          "street": {
+            "type": "string",
+            "nullable": true
+          },
+          "block": {
+            "type": "string",
+            "nullable": true
+          },
+          "zipCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "nullable": true
+          },
+          "country": {
+            "type": "string",
+            "nullable": true
+          },
+          "addressType": {
+            "type": "string",
+            "nullable": true
+          },
+          "addressName2": {
+            "type": "string",
+            "nullable": true
+          },
+          "addressName3": {
+            "type": "string",
+            "nullable": true
+          },
+          "streetNo": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "BusinessPartner": {
+        "type": "object",
+        "properties": {
+          "cardCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "cardName": {
+            "type": "string",
+            "nullable": true
+          },
+          "cardType": {
+            "type": "string",
+            "nullable": true
+          },
+          "cellular": {
+            "type": "string",
+            "nullable": true
+          },
+          "phone1": {
+            "type": "string",
+            "nullable": true
+          },
+          "phone2": {
+            "type": "string",
+            "nullable": true
+          },
+          "fax": {
+            "type": "string",
+            "nullable": true
+          },
+          "u_Level": {
+            "type": "string",
+            "nullable": true
+          },
+          "u_Grade": {
+            "type": "string",
+            "nullable": true
+          },
+          "u_Section": {
+            "type": "string",
+            "nullable": true
+          },
+          "u_Academic": {
+            "type": "string",
+            "nullable": true
+          },
+          "u_Status": {
+            "type": "string",
+            "nullable": true
+          },
+          "u_Zone": {
+            "type": "string",
+            "nullable": true
+          },
+          "u_Bus": {
+            "type": "string",
+            "nullable": true
+          },
+          "u_Lunch": {
+            "type": "string",
+            "nullable": true
+          },
+          "u_Sch_system": {
+            "type": "string",
+            "nullable": true
+          },
+          "u_Year": {
+            "type": "string",
+            "nullable": true
+          },
+          "u_Area": {
+            "type": "string",
+            "nullable": true
+          },
+          "u_Taxi": {
+            "type": "string",
+            "nullable": true
+          },
+          "u_Block": {
+            "type": "string",
+            "nullable": true
+          },
+          "u_DateOfBirth": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "bpAddresses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Bpaddress"
+            },
+            "nullable": true
+          },
+          "contactEmployees": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Contactemployee"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "BusinessPartnerPatch": {
+        "type": "object",
+        "properties": {
+          "cardName": {
+            "type": "string",
+            "nullable": true
+          },
+          "cellular": {
+            "type": "string",
+            "nullable": true
+          },
+          "phone1": {
+            "type": "string",
+            "nullable": true
+          },
+          "phone2": {
+            "type": "string",
+            "nullable": true
+          },
+          "fax": {
+            "type": "string",
+            "nullable": true
+          },
+          "u_Level": {
+            "type": "string",
+            "nullable": true
+          },
+          "u_Grade": {
+            "type": "string",
+            "nullable": true
+          },
+          "u_Section": {
+            "type": "string",
+            "nullable": true
+          },
+          "u_Academic": {
+            "type": "string",
+            "nullable": true
+          },
+          "u_Status": {
+            "type": "string",
+            "nullable": true
+          },
+          "u_Zone": {
+            "type": "string",
+            "nullable": true
+          },
+          "u_Bus": {
+            "type": "string",
+            "nullable": true
+          },
+          "u_Lunch": {
+            "type": "string",
+            "nullable": true
+          },
+          "u_Sch_system": {
+            "type": "string",
+            "nullable": true
+          },
+          "u_Year": {
+            "type": "string",
+            "nullable": true
+          },
+          "u_Area": {
+            "type": "string",
+            "nullable": true
+          },
+          "u_Taxi": {
+            "type": "string",
+            "nullable": true
+          },
+          "u_Block": {
+            "type": "string",
+            "nullable": true
+          },
+          "u_DateOfBirth": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "bpAddresses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Bpaddress"
+            },
+            "nullable": true
+          },
+          "contactEmployees": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Contactemployee"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Contactemployee": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "position": {
+            "type": "string",
+            "nullable": true
+          },
+          "address": {
+            "type": "string",
+            "nullable": true
+          },
+          "phone1": {
+            "type": "string",
+            "nullable": true
+          },
+          "phone2": {
+            "type": "string",
+            "nullable": true
+          },
+          "mobilePhone": {
+            "type": "string",
+            "nullable": true
+          },
+          "fax": {
+            "type": "string",
+            "nullable": true
+          },
+          "e_Mail": {
+            "type": "string",
+            "nullable": true
+          },
+          "remarks1": {
+            "type": "string",
+            "nullable": true
+          },
+          "remarks2": {
+            "type": "string",
+            "nullable": true
+          },
+          "gender": {
+            "type": "string",
+            "nullable": true
+          },
+          "profession": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "cityOfBirth": {
+            "type": "string",
+            "nullable": true
+          },
+          "firstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "middleName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreditCards": {
+        "type": "object",
+        "properties": {
+          "creditCard": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "creditAcct": {
+            "type": "string",
+            "nullable": true
+          },
+          "creditCardNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "cardValidUntil": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "voucherNum": {
+            "type": "string",
+            "nullable": true
+          },
+          "creditSum": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Document": {
+        "type": "object",
+        "properties": {
+          "docDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "docDueDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "cardCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "comments": {
+            "type": "string",
+            "nullable": true
+          },
+          "series": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "taxDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "documentLines": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Documentline"
+            },
+            "nullable": true
+          },
+          "documentInstallments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InstallmentInvoice"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Documentline": {
+        "type": "object",
+        "properties": {
+          "itemCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "quantity": {
+            "type": "number",
+            "format": "double"
+          },
+          "unitPrice": {
+            "type": "number",
+            "format": "double"
+          },
+          "discountPercent": {
+            "type": "number",
+            "format": "double"
+          },
+          "warehouseCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "baseType": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "baseEntry": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "baseLine": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GoodsIssue": {
+        "type": "object",
+        "properties": {
+          "docDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "docDueDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "comments": {
+            "type": "string",
+            "nullable": true
+          },
+          "taxDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "documentLines": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Issueline"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "IncomingPayment": {
+        "type": "object",
+        "properties": {
+          "docType": {
+            "type": "string",
+            "nullable": true
+          },
+          "docDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "cardCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "cashAccount": {
+            "type": "string",
+            "nullable": true
+          },
+          "cashSum": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "transferAccount": {
+            "type": "string",
+            "nullable": true
+          },
+          "transferSum": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "transferDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "paymentInvoices": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Paymentinvoice"
+            },
+            "nullable": true
+          },
+          "paymentCreditCards": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CreditCards"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "InstallmentInvoice": {
+        "type": "object",
+        "properties": {
+          "dueDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "total": {
+            "type": "number",
+            "format": "double"
+          },
+          "percentage": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Issueline": {
+        "type": "object",
+        "properties": {
+          "itemCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "quantity": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ItemMaster": {
+        "type": "object",
+        "properties": {
+          "itemCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "itemName": {
+            "type": "string",
+            "nullable": true
+          },
+          "foreignName": {
+            "type": "string",
+            "nullable": true
+          },
+          "itemsGroupCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "barCode": {
+            "nullable": true
+          },
+          "purchaseItem": {
+            "type": "string",
+            "nullable": true
+          },
+          "salesItem": {
+            "type": "string",
+            "nullable": true
+          },
+          "inventoryItem": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ItemMasterPatch": {
+        "type": "object",
+        "properties": {
+          "itemName": {
+            "type": "string",
+            "nullable": true
+          },
+          "foreignName": {
+            "type": "string",
+            "nullable": true
+          },
+          "itemsGroupCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "barCode": {
+            "nullable": true
+          },
+          "purchaseItem": {
+            "type": "string",
+            "nullable": true
+          },
+          "salesItem": {
+            "type": "string",
+            "nullable": true
+          },
+          "inventoryItem": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LoginRequest": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Paymentinvoice": {
+        "type": "object",
+        "properties": {
+          "docEntry": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "sumApplied": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "http",
+        "description": "Enter only your JWT token",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "security": [
+    {
+      "Bearer": [ ]
+    }
+  ]
+}

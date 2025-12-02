@@ -1,0 +1,248 @@
+[
+  {
+    "ContainingType": "Bisk_APIS.Controllers.LoginController",
+    "Method": "Login",
+    "RelativePath": "api/v1/auth/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "Bisk_APIS.Model.LoginRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Bisk_APIS.Controllers.MastersController",
+    "Method": "GetIncomingPayments",
+    "RelativePath": "api/v1/IncomingPayments",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Bisk_APIS.Controllers.MastersController",
+    "Method": "GetItems",
+    "RelativePath": "api/v1/Items",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Bisk_APIS.Controllers.MastersController",
+    "Method": "GetOutgoingPayments",
+    "RelativePath": "api/v1/OutgoingPayments",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Bisk_APIS.Controllers.PostingController",
+    "Method": "PostBP",
+    "RelativePath": "api/v1/posting/bp",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "bp",
+        "Type": "Bisk_APIS.Model.BusinessPartner",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Bisk_APIS.Controllers.PostingController",
+    "Method": "PatchBP",
+    "RelativePath": "api/v1/posting/bp/{cardCode}",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "cardCode",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "patch",
+        "Type": "Bisk_APIS.Model.BusinessPartnerPatch",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Bisk_APIS.Controllers.PostingController",
+    "Method": "PostCredit",
+    "RelativePath": "api/v1/posting/creditnotes",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "doc",
+        "Type": "Bisk_APIS.Model.Document",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Bisk_APIS.Controllers.PostingController",
+    "Method": "PostGoodsIssue",
+    "RelativePath": "api/v1/posting/inventory/genexits",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "doc",
+        "Type": "BISK_API.Model.GoodsIssue",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Bisk_APIS.Controllers.PostingController",
+    "Method": "PostInvoice",
+    "RelativePath": "api/v1/posting/invoices",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "doc",
+        "Type": "Bisk_APIS.Model.Document",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Bisk_APIS.Controllers.PostingController",
+    "Method": "PostItem",
+    "RelativePath": "api/v1/posting/items",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "item",
+        "Type": "BISK_API.Model.ItemMaster",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Bisk_APIS.Controllers.PostingController",
+    "Method": "PatchItem",
+    "RelativePath": "api/v1/posting/items/{itemCode}",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "itemCode",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "patch",
+        "Type": "BISK_API.Model.ItemMasterPatch",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Bisk_APIS.Controllers.PostingController",
+    "Method": "PostOrder",
+    "RelativePath": "api/v1/posting/orders",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "doc",
+        "Type": "Bisk_APIS.Model.Document",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Bisk_APIS.Controllers.PostingController",
+    "Method": "PostIncomingPayment",
+    "RelativePath": "api/v1/posting/payments/incoming",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "doc",
+        "Type": "Bisk_APIS.Model.IncomingPayment",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Bisk_APIS.Controllers.PostingController",
+    "Method": "PostOutgoingPayment",
+    "RelativePath": "api/v1/posting/payments/outgoing",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "doc",
+        "Type": "Bisk_APIS.Model.IncomingPayment",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Bisk_APIS.Controllers.MastersController",
+    "Method": "GetInvoices",
+    "RelativePath": "api/v1/StudentInvoices",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Bisk_APIS.Controllers.MastersController",
+    "Method": "GetRefunds",
+    "RelativePath": "api/v1/StudentRefunds",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Bisk_APIS.Controllers.MastersController",
+    "Method": "GetStudents",
+    "RelativePath": "api/v1/Students",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  }
+]

@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>EmptyAddon</name>
+    </assembly>
+    <members>
+        <member name="T:CashInOut.GlobalFunctions">
+            <summary>
+            Globally whatever Function and method do you want define here 
+            We can use any class and module from here  
+            </summary>
+            <remarks></remarks>
+        </member>
+        <member name="T:CashInOut.GlobalVariables">
+            <summary>
+            GGlobally whatever variable do you want declare here 
+            We can use any class and module from here  
+            </summary>
+            <remarks></remarks>
+        </member>
+        <member name="T:CashInOut.MainM">
+            <summary>
+            This Application Sarted from here
+            This is Used for to connect the SAP and dot net console
+            And create menu
+            1)SetApplication
+             It is used to get connection to SAP.
+             Here we are using SAPbouiCOM.SboGuiApi, it is part of the SAP Business One Software Development Kit (SDK), and exposes user 
+             interface elements of the SAP Business One front end
+            2)SetFilter
+              Sets an EventFilter object that filters in events on specific forms
+            3)CookieConnect
+             It is represent the one of the Company Data base
+             It is enable to connect the company and Create the Business Object to use the company data base
+            4)ConnectionContext
+              It is used for to connect the company
+            5)TableCreation
+              It is used for to craete user tables and user define objects
+            6)SetEventFilter
+              User to filder the events for particilar forms
+              it is used to high performance 
+            7)AddXML
+              It is used to add memu XML 
+            </summary>
+            <remarks></remarks>
+        </member>
+        <member name="T:CashFlow.My.Resources.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="T:EmptyAddon.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:EmptyAddon.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:EmptyAddon.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+    </members>
+</doc>

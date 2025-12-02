@@ -1,0 +1,249 @@
+[
+  {
+    "ContainingType": "gardnerAPIs.Controllers.LoginController",
+    "Method": "SendOtp",
+    "RelativePath": "api/v1/auth/ForgetPassword",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "GardeningAPI.Model.ForgetPasswordRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "gardnerAPIs.Controllers.LoginController",
+    "Method": "Login",
+    "RelativePath": "api/v1/auth/Login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "GardnerAPI.Model.LoginRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "gardnerAPIs.Controllers.LoginController",
+    "Method": "Logout",
+    "RelativePath": "api/v1/auth/logout",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "gardnerAPIs.Controllers.LoginController",
+    "Method": "ResendOtp",
+    "RelativePath": "api/v1/auth/resend-otp",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "GardeningAPI.Model.ResendOtpRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "gardnerAPIs.Controllers.LoginController",
+    "Method": "ResetPassword",
+    "RelativePath": "api/v1/auth/ResetPassword",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "GardeningAPI.Model.ResetPasswordRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "gardnerAPIs.Controllers.LoginController",
+    "Method": "Signup",
+    "RelativePath": "api/v1/auth/Signup",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "GardeningAPI.Model.SignUpRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "gardnerAPIs.Controllers.LoginController",
+    "Method": "VerifyEmailOtp",
+    "RelativePath": "api/v1/auth/VerifyEmailOtp",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "req",
+        "Type": "GardeningAPI.Model.OtpVerifyRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "gardnerAPIs.Controllers.MastersController",
+    "Method": "DownloadFile",
+    "RelativePath": "api/v1/download",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "fileName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "whCode",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "gardnerAPIs.Controllers.MastersController",
+    "Method": "GetItems",
+    "RelativePath": "api/v1/get-items",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "warehouse",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "gardnerAPIs.Controllers.MastersController",
+    "Method": "GetCart",
+    "RelativePath": "api/v1/get/cart",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "cardCode",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "gardnerAPIs.Controllers.PostingController",
+    "Method": "PostCartItems",
+    "RelativePath": "api/v1/posting/cart",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "draft",
+        "Type": "GardeningAPI.Model.Drafts",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "gardnerAPIs.Controllers.PostingController",
+    "Method": "PostCredit",
+    "RelativePath": "api/v1/posting/creditnotes",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "doc",
+        "Type": "GardeningAPI.Model.Document",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "gardnerAPIs.Controllers.PostingController",
+    "Method": "PostInvoice",
+    "RelativePath": "api/v1/posting/invoices",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "doc",
+        "Type": "GardeningAPI.Model.Document",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "gardnerAPIs.Controllers.PostingController",
+    "Method": "PostOrder",
+    "RelativePath": "api/v1/posting/orders",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "doc",
+        "Type": "GardeningAPI.Model.Document",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Object",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "gardnerAPIs.Controllers.PostingController",
+    "Method": "PostIncomingPayment",
+    "RelativePath": "api/v1/posting/payments/incoming",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "doc",
+        "Type": "GardeningAPI.Model.IncomingPayment",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

@@ -1,0 +1,399 @@
+[
+  {
+    "ContainingType": "Bisk_APIS.Controllers.PostingController",
+    "Method": "PostCreditNote",
+    "RelativePath": "api/v1/CreditNote",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Authorization",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "document",
+        "Type": "Bisk_APIS.Model.Document",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Bisk_APIS.Controllers.PostingController",
+    "Method": "PostGoodsIssue",
+    "RelativePath": "api/v1/GoodsIssue",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Authorization",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "document",
+        "Type": "BISK_API.Model.GoodsIssue",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Bisk_APIS.Controllers.MastersController",
+    "Method": "getIncomingPayment",
+    "RelativePath": "api/v1/IncomingPayment",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Authorization",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "InvoiceEntry",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "StudentCode",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Bisk_APIS.Controllers.PostingController",
+    "Method": "PostPayment",
+    "RelativePath": "api/v1/IncomingPayment",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Authorization",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "document",
+        "Type": "Bisk_APIS.Model.IncomingPayment",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Bisk_APIS.Controllers.PostingController",
+    "Method": "PostInvoice",
+    "RelativePath": "api/v1/Invoices",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Authorization",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "document",
+        "Type": "Bisk_APIS.Model.Document",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Bisk_APIS.Controllers.MastersController",
+    "Method": "getItems",
+    "RelativePath": "api/v1/Items",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Authorization",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "itemCode",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Bisk_APIS.Controllers.PostingController",
+    "Method": "PostItems",
+    "RelativePath": "api/v1/Items",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Authorization",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "items",
+        "Type": "BISK_API.Model.ItemMaster",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Bisk_APIS.Controllers.PostingController",
+    "Method": "PatchItemByCode",
+    "RelativePath": "api/v1/Items/{itemCode}",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Authorization",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "itemCode",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "itemPatch",
+        "Type": "BISK_API.Model.ItemMasterPatch",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Bisk_APIS.Controllers.LoginController",
+    "Method": "Login",
+    "RelativePath": "api/v1/Login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userData",
+        "Type": "Bisk_APIS.Model.UserLogin",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Bisk_APIS.Controllers.MastersController",
+    "Method": "getOutgoingPayments",
+    "RelativePath": "api/v1/OutgoingPayment",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Authorization",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "RefundEntry",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "StudentCode",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Bisk_APIS.Controllers.PostingController",
+    "Method": "PostOutgoing",
+    "RelativePath": "api/v1/OutgoingPayment",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Authorization",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "document",
+        "Type": "Bisk_APIS.Model.IncomingPayment",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Bisk_APIS.Controllers.PostingController",
+    "Method": "PostSaleOrder",
+    "RelativePath": "api/v1/SaleOrder",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Authorization",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "document",
+        "Type": "Bisk_APIS.Model.Document",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Bisk_APIS.Controllers.MastersController",
+    "Method": "getInvoices",
+    "RelativePath": "api/v1/StudentInvoices",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Authorization",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "DocumentEntry",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "DocumentStatus",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "StudentCode",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Bisk_APIS.Controllers.MastersController",
+    "Method": "getCreditNotes",
+    "RelativePath": "api/v1/StudentRefunds",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Authorization",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "DocumentEntry",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "DocumentStatus",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "StudentCode",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "InvoiceEntry",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Bisk_APIS.Controllers.MastersController",
+    "Method": "getCustomers",
+    "RelativePath": "api/v1/Students",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Authorization",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "StudentCode",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Bisk_APIS.Controllers.PostingController",
+    "Method": "PostStudent",
+    "RelativePath": "api/v1/Students",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Authorization",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "bp",
+        "Type": "Bisk_APIS.Model.BusinessPartner",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Bisk_APIS.Controllers.PostingController",
+    "Method": "UpdateStudent",
+    "RelativePath": "api/v1/Students/{cardCode}",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Authorization",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "cardCode",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "bp",
+        "Type": "Bisk_APIS.Model.BusinessPartnerPatch",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

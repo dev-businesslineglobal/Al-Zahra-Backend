@@ -1,0 +1,1353 @@
+{
+  "openapi": "3.0.4",
+  "info": {
+    "title": "WEBAPI",
+    "description": "BISK API (Masters & Posting via SAP B1 Service Layer)",
+    "version": "v1"
+  },
+  "paths": {
+    "/api/v1/auth/login": {
+      "post": {
+        "tags": [
+          "Login"
+        ],
+        "summary": "Authenticate user and return a JWT.",
+        "description": "<div style=\"margin:16px 0 18px 0; line-height:1.6;\">\r\n  <div style=\"font-weight:700;font-size:15px;margin-bottom:8px;\">Overview</div>\r\n  <div>Validates credentials and returns a signed JSON Web Token.</div>\r\n</div>\r\n<div style=\"margin:16px 0 18px 0;\">\r\n  <div style=\"font-weight:700;font-size:15px;margin-bottom:8px;\">Request (mandatory fields only)</div>\r\n  <pre style=\"padding:12px;background:#0b102117;border:1px solid #e5e7eb;border-radius:12px;\">\r\n    <code language=\"json\">\r\n\t\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\"username\": \"api.admin\",\r\n\t\t\t\t\t\t\t\"password\": \"P@ssw0rd!\"\r\n\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t</code>\r\n  </pre>\r\n</div>\r\n<div style=\"margin:16px 0 18px 0;\">\r\n  <div style=\"font-weight:700;font-size:15px;margin-bottom:8px;\">Response Example</div>\r\n  <table style=\"border-collapse:separate;border-spacing:0;width:100%;max-width:980px;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;background:#fff;\">\r\n    <thead>\r\n      <tr>\r\n        <th style=\"text-align:left;padding:12px 10px;border-bottom:1px solid #e5e7eb;background:#f9fafb;\">Code</th>\r\n        <th style=\"text-align:left;padding:12px 10px;border-bottom:1px solid #e5e7eb;background:#f9fafb;\">Example</th>\r\n      </tr>\r\n    </thead>\r\n    <tbody>\r\n      <tr>\r\n        <td style=\"padding:12px 10px;vertical-align:top;\">\r\n          <span style=\"display:inline-block;padding:3px 10px;border-radius:999px;border:1px solid #16a34a;color:#16a34a;\">200</span>\r\n        </td>\r\n        <td style=\"padding:12px 10px;vertical-align:top;\">\r\n          <pre style=\"margin:0;padding:12px;background:#0b102117;border:1px solid #e5e7eb;border-radius:12px;\">\r\n            <code language=\"json\">\r\n\t\t\t\t\t\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\t\t\t\t\"success\": true,\r\n\t\t\t\t\t\t\t\t\t\t\t\"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9*********\",\r\n\t\t\t\t\t\t\t\t\t\t\t\"message\": \"Login successful\"\r\n\t\t\t\t\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t\t\t\t\t</code>\r\n          </pre>\r\n        </td>\r\n      </tr>\r\n      <tr>\r\n        <td style=\"padding:12px 10px;vertical-align:top;\">\r\n          <span style=\"display:inline-block;padding:3px 10px;border-radius:999px;border:1px solid #ef4444;color:#ef4444;\">401</span>\r\n        </td>\r\n        <td style=\"padding:12px 10px;vertical-align:top;\">\r\n          <pre style=\"margin:0;padding:12px;background:#0b102117;border:1px solid #e5e7eb;border-radius:12px;\">\r\n            <code language=\"json\">\r\n\t\t\t\t\t\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\t\t\t\t\"success\": false,\r\n\t\t\t\t\t\t\t\t\t\t\t\"token\": null,\r\n\t\t\t\t\t\t\t\t\t\t\t\"message\": \"Invalid username or password\"\r\n\t\t\t\t\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t\t\t\t\t</code>\r\n          </pre>\r\n        </td>\r\n      </tr>\r\n    </tbody>\r\n  </table>\r\n</div>",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns JWT if credentials are valid."
+          },
+          "401": {
+            "description": "Invalid credentials."
+          }
+        }
+      }
+    },
+    "/api/v1/Items": {
+      "get": {
+        "tags": [
+          "Masters"
+        ],
+        "parameters": [
+          {
+            "name": "itemCode",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/Students": {
+      "get": {
+        "tags": [
+          "Masters"
+        ],
+        "parameters": [
+          {
+            "name": "studentCode",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "academicYear",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/StudentInvoices": {
+      "get": {
+        "tags": [
+          "Masters"
+        ],
+        "parameters": [
+          {
+            "name": "documentEntry",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "academicYear",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "studentCode",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/StudentRefunds": {
+      "get": {
+        "tags": [
+          "Masters"
+        ],
+        "parameters": [
+          {
+            "name": "documentEntry",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "documentStatus",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "studentCode",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "invoiceEntry",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "academicYear",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/IncomingPayments": {
+      "get": {
+        "tags": [
+          "Masters"
+        ],
+        "parameters": [
+          {
+            "name": "invoiceEntry",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "studentCode",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "academicYear",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/OutgoingPayments": {
+      "get": {
+        "tags": [
+          "Masters"
+        ],
+        "parameters": [
+          {
+            "name": "invoiceEntry",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "studentCode",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "academicYear",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/posting/items": {
+      "post": {
+        "tags": [
+          "Posting"
+        ],
+        "summary": "Create Item (Service Layer: `Items`)",
+        "description": "<div style=\"display:grid;gap:14px;line-height:1.55;\">\r\n  <!-- Header -->\r\n  <div style=\"border:1px solid #e5e7eb;border-radius:12px;padding:14px;background:#ffffff;\">\r\n    <div style=\"display:flex;align-items:center;gap:8px;flex-wrap:wrap;\">\r\n      <span style=\"font-weight:700;font-size:15px;\">Overview</span>\r\n      <span style=\"font-size:12px;padding:2px 8px;border:1px solid #22c55e;color:#16a34a;border-radius:999px;background:#f0fdf4;\">\r\n\t\t\t\t\t\t\t\tPOST /posting/items\r\n\t\t\t\t\t\t\t</span>\r\n    </div>\r\n    <div style=\"color:#475569;margin-top:6px;\">Creates a new Inventory Item in SAP B1 via Service Layer.</div>\r\n  </div>\r\n  <!-- Required fields -->\r\n  <div style=\"border:1px solid #e5e7eb;border-radius:12px;padding:14px;background:#ffffff;\">\r\n    <div style=\"display:flex;align-items:center;gap:8px;margin-bottom:10px;\">\r\n      <span style=\"font-weight:700;font-size:14px;\">Required fields</span>\r\n      <span style=\"font-size:11px;padding:2px 8px;border:1px solid #94a3b8;color:#334155;border-radius:999px;background:#f8fafc;\">\r\n\t\t\t\t\t\t\t\tItemMaster\r\n\t\t\t\t\t\t\t</span>\r\n    </div>\r\n    <ul style=\"margin:0 0 0 18px;line-height:1.7;\">\r\n      <li style=\"margin:6px 0;\">\r\n        <span style=\"display:inline-flex;align-items:center;gap:10px;\">\r\n          ```itemCode```\r\n          <span style=\"font-size:12px;padding:2px 8px;border:1px solid #cbd5e1;border-radius:999px;background:#f8fafc;color:#475569;\">string</span>\r\n        </span>\r\n      </li>\r\n      <li style=\"margin:6px 0;\">\r\n        <span style=\"display:inline-flex;align-items:center;gap:10px;\">\r\n          ```itemName```\r\n          <span style=\"font-size:12px;padding:2px 8px;border:1px solid #cbd5e1;border-radius:999px;background:#f8fafc;color:#475569;\">string</span>\r\n        </span>\r\n      </li>\r\n      <li style=\"margin:6px 0;\">\r\n        <span style=\"display:inline-flex;align-items:center;gap:10px;\">\r\n          ```itemsGroupCode```\r\n          <span style=\"font-size:12px;padding:2px 8px;border:1px solid #cbd5e1;border-radius:999px;background:#f8fafc;color:#475569;\">number</span>\r\n        </span>\r\n      </li>\r\n    </ul>\r\n  </div>\r\n  <!-- Request -->\r\n  <div style=\"border:1px solid #e5e7eb;border-radius:12px;padding:14px;background:#ffffff;\">\r\n    <div style=\"display:flex;align-items:center;gap:8px;margin-bottom:8px;\">\r\n      <span style=\"font-weight:700;font-size:14px;\">Request</span>\r\n      <span style=\"font-size:12px;padding:2px 8px;border:1px solid #0ea5e9;color:#0284c7;border-radius:999px;background:#ecfeff;\">application/json</span>\r\n    </div>\r\n    <pre style=\"margin:0;padding:12px;background:#0b102117;border:1px solid #e5e7eb;border-radius:10px;overflow:auto;\">\r\n      <code language=\"json\">\r\n\t\t\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\t\"itemCode\": \"INV-100731\",\r\n\t\t\t\t\t\t\t\t\"itemName\": \"Notebook A5\",\r\n\t\t\t\t\t\t\t\t\"itemsGroupCode\": 105,\r\n\t\t\t\t\t\t\t\t\"barCode\": \"1234567890123\"\r\n\t\t\t\t\t\t\t\t\"inventoryItem\": \"Y\",\r\n\t\t\t\t\t\t\t\t\"salesItem\": \"Y\",\r\n\t\t\t\t\t\t\t\t\"purchaseItem\": \"Y\",\r\n\t\t\t\t\t\t\t\t\"uomGroupEntry\": 1\r\n\t\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t\t</code>\r\n    </pre>\r\n  </div>\r\n  <!-- Responses -->\r\n  <div style=\"display:grid;gap:12px;\">\r\n    <!-- Success -->\r\n    <div style=\"border:1px solid #e5e7eb;border-radius:12px;padding:14px;background:#ffffff;\">\r\n      <div style=\"display:flex;align-items:center;gap:8px;margin-bottom:8px;\">\r\n        <span style=\"font-weight:700;font-size:14px;\">Success</span>\r\n        <span style=\"font-size:12px;padding:2px 8px;border:1px solid #22c55e;color:#16a34a;border-radius:999px;background:#f0fdf4;\">201 Created</span>\r\n      </div>\r\n      <pre style=\"margin:0;padding:12px;background:#0b102117;border:1px solid #e5e7eb;border-radius:10px;overflow:auto;\">\r\n        <code language=\"json\">\r\n\t\t\t\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\t\t\"success\": true,\r\n\t\t\t\t\t\t\t\t\t\"data\": { \"itemCode\": \"INV-100731\", \"itemName\": \"Notebook A5\" },\r\n\t\t\t\t\t\t\t\t\t\"error\": null\r\n\t\t\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t\t\t</code>\r\n      </pre>\r\n    </div>\r\n    <!-- Error -->\r\n    <div style=\"border:1px solid #e5e7eb;border-radius:12px;padding:14px;background:#ffffff;\">\r\n      <div style=\"display:flex;align-items:center;gap:8px;margin-bottom:8px;\">\r\n        <span style=\"font-weight:700;font-size:14px;\">Error</span>\r\n        <span style=\"font-size:12px;padding:2px 8px;border:1px solid #ef4444;color:#ef4444;border-radius:999px;background:#fef2f2;\">400 Bad Request</span>\r\n      </div>\r\n      <pre style=\"margin:0;padding:12px;background:#0b102117;border:1px solid #e5e7eb;border-radius:10px;overflow:auto;\">\r\n        <code language=\"json\">\r\n\t\t\t\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\t\t\"success\": false,\r\n\t\t\t\t\t\t\t\t\t\"data\": null,\r\n\t\t\t\t\t\t\t\t\t\"error\": \"Invalid item group\"\r\n\t\t\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t\t\t</code>\r\n      </pre>\r\n    </div>\r\n  </div>\r\n</div>",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ItemMaster"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created.",
+            "content": {
+              "application/json": {
+                "schema": { }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid payload.",
+            "content": {
+              "application/json": {
+                "schema": { }
+              }
+            }
+          },
+          "500": {
+            "description": "Service Layer error.",
+            "content": {
+              "application/json": {
+                "schema": { }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/posting/items/{itemCode}": {
+      "patch": {
+        "tags": [
+          "Posting"
+        ],
+        "summary": "Patch Item by `itemCode`",
+        "description": "\r\n<h3>Auth</h3>\r\n<p>JWT in <code>Authorization</code> header.</p>\r\n\r\n<h3>Mandatory fields</h3>\r\n<p>Path parameter: <code>itemCode</code>. Body may contain any subset of fields (partial update).</p>\r\n\r\n<details open>\r\n  <summary><b>Request example</b></summary>\r\n  <pre><code>{\r\n  \"itemName\": \"Blue Pen - New\",\r\n  \"barCode\": \"9999999999999\"\r\n}</code></pre>\r\n</details>\r\n\r\n<h3>Success (204 No Content)</h3>\r\n<pre><code>(no content)</code></pre>\r\n\r\n\r\n<h3>Error (404/400/500) example</h3>\r\n<pre><code>{\r\n  \"success\": false,\r\n  \"data\": null,\r\n  \"error\": \"Item not found\"\r\n}</code></pre>",
+        "parameters": [
+          {
+            "name": "itemCode",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ItemMasterPatch"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": { }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": { }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": { }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": { }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/posting/bp": {
+      "post": {
+        "tags": [
+          "Posting"
+        ],
+        "summary": "Create Business Partner (Student)",
+        "description": "<div style=\"display:grid;gap:14px;line-height:1.55;\">\r\n  <!-- Header -->\r\n  <div style=\"border:1px solid #e5e7eb;border-radius:12px;padding:14px;background:#ffffff;\">\r\n    <div style=\"display:flex;align-items:center;gap:8px;\">\r\n      <span style=\"font-weight:700;font-size:15px;\">Overview</span>\r\n      <span style=\"font-size:12px;padding:2px 8px;border:1px solid #22c55e;color:#16a34a;border-radius:999px;background:#f0fdf4;\">POST /posting/bp</span>\r\n    </div>\r\n    <div style=\"color:#475569;margin-top:6px;\">Creates a BP (student) record in SAP B1 via Service Layer.</div>\r\n  </div>\r\n  <!-- Requirements -->\r\n  <div style=\"border:1px solid #e5e7eb;border-radius:12px;padding:14px;background:#ffffff;\">\r\n    <div style=\"font-weight:700;font-size:14px;margin-bottom:8px;\">Required fields</div>\r\n    <div style=\"display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;\">\r\n      <div style=\"border:1px dashed #e5e7eb;border-radius:10px;padding:10px;\">\r\n        <div style=\"font-size:12px;color:#64748b;\">string</div>\r\n        <div style=\"font-weight:600;\">\r\n          ```cardCode```\r\n        </div>\r\n      </div>\r\n      <div style=\"border:1px dashed #e5e7eb;border-radius:10px;padding:10px;\">\r\n        <div style=\"font-size:12px;color:#64748b;\">string</div>\r\n        <div style=\"font-weight:600;\">\r\n          ```cardName```\r\n        </div>\r\n      </div>\r\n      <div style=\"border:1px dashed #e5e7eb;border-radius:10px;padding:10px;\">\r\n        <div style=\"font-size:12px;color:#64748b;\">string</div>\r\n        <div style=\"font-weight:600;\">\r\n          ```U_Academic```\r\n        </div>\r\n      </div>\r\n      <div style=\"border:1px dashed #e5e7eb;border-radius:10px;padding:10px;\">\r\n        <div style=\"font-size:12px;color:#64748b;\">enum</div>\r\n        <div style=\"font-weight:600;\">\r\n          ```cardType``` (e.g., ```cCustomer```)\r\n\t\t\t\t\t\t\t\t</div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <!-- Request -->\r\n  <div style=\"border:1px solid #e5e7eb;border-radius:12px;padding:14px;background:#ffffff;\">\r\n    <div style=\"display:flex;align-items:center;gap:8px;margin-bottom:8px;\">\r\n      <span style=\"font-weight:700;font-size:14px;\">Request</span>\r\n      <span style=\"font-size:12px;padding:2px 8px;border:1px solid #0ea5e9;color:#0284c7;border-radius:999px;background:#ecfeff;\">application/json</span>\r\n    </div>\r\n    <pre style=\"margin:0;padding:12px;background:#0b102117;border:1px solid #e5e7eb;border-radius:10px;overflow:auto;\">\r\n      <code language=\"json\">\r\n\t\t\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\t\"cardCode\": \"STU-0001\",\r\n\t\t\t\t\t\t\t\t\"cardName\": \"Ali Khan\",\r\n\t\t\t\t\t\t\t\t\"cardType\": \"cCustomer\",\r\n\t\t\t\t\t\t\t\t\"U_Academic\": \"2025-2026\",\r\n\t\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t\t</code>\r\n    </pre>\r\n  </div>\r\n  <!-- Responses -->\r\n  <div style=\"display:grid;gap:12px;\">\r\n    <div style=\"border:1px solid #e5e7eb;border-radius:12px;padding:14px;background:#ffffff;\">\r\n      <div style=\"display:flex;align-items:center;gap:8px;margin-bottom:8px;\">\r\n        <span style=\"font-weight:700;font-size:14px;\">Success</span>\r\n        <span style=\"font-size:12px;padding:2px 8px;border:1px solid #22c55e;color:#16a34a;border-radius:999px;background:#f0fdf4;\">201 Created</span>\r\n      </div>\r\n      <pre style=\"margin:0;padding:12px;background:#0b102117;border:1px solid #e5e7eb;border-radius:10px;overflow:auto;\">\r\n        <code language=\"json\">\r\n\t\t\t\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\t\t\"success\": true,\r\n\t\t\t\t\t\t\t\t\t\"data\": { \"studentCode\": \"STU-0001\", \"studentName\": \"Ali Khan\" },\r\n\t\t\t\t\t\t\t\t\t\"error\": null\r\n\t\t\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t\t\t</code>\r\n      </pre>\r\n    </div>\r\n    <div style=\"border:1px solid #e5e7eb;border-radius:12px;padding:14px;background:#ffffff;\">\r\n      <div style=\"display:flex;align-items:center;gap:8px;margin-bottom:8px;\">\r\n        <span style=\"font-weight:700;font-size:14px;\">Error</span>\r\n        <span style=\"font-size:12px;padding:2px 8px;border:1px solid #ef4444;color:#ef4444;border-radius:999px;background:#fef2f2;\">400 Bad Request</span>\r\n      </div>\r\n      <pre style=\"margin:0;padding:12px;background:#0b102117;border:1px solid #e5e7eb;border-radius:10px;overflow:auto;\">\r\n        <code language=\"json\">\r\n\t\t\t\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\t\t\"success\": false,\r\n\t\t\t\t\t\t\t\t\t\"data\": null,\r\n\t\t\t\t\t\t\t\t\t\"error\": \"Duplicate BP code\"\r\n\t\t\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t\t\t</code>\r\n      </pre>\r\n    </div>\r\n  </div>\r\n</div>",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BusinessPartner"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created.",
+            "content": {
+              "application/json": {
+                "schema": { }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid payload.",
+            "content": {
+              "application/json": {
+                "schema": { }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": { }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/posting/bp/{cardCode}": {
+      "patch": {
+        "tags": [
+          "Posting"
+        ],
+        "summary": "Patch Business Partner by `cardCode`",
+        "description": "<div style=\"display:grid;gap:14px;line-height:1.55;\">\r\n  <!-- Header -->\r\n  <div style=\"border:1px solid #e5e7eb;border-radius:12px;padding:14px;background:#ffffff;\">\r\n    <div style=\"display:flex;align-items:center;gap:8px;\">\r\n      <span style=\"font-weight:700;font-size:15px;\">Overview</span>\r\n      <span style=\"font-size:12px;padding:2px 8px;border:1px solid #f59e0b;color:#b45309;border-radius:999px;background:#fffbeb;\">PATCH /posting/bp/{cardCode}</span>\r\n    </div>\r\n    <div style=\"color:#475569;margin-top:6px;\">Updates one or more fields of an existing BP.</div>\r\n  </div>\r\n  <!-- Path & Body requirements -->\r\n  <div style=\"border:1px solid #e5e7eb;border-radius:12px;padding:14px;background:#ffffff;\">\r\n    <div style=\"font-weight:700;font-size:14px;margin-bottom:8px;\">Requirements</div>\r\n    <ul style=\"margin:0 0 0 18px;\">\r\n      <li>\r\n\t\t\t\t\t\t\t\tPath param: ```cardCode```</li>\r\n      <li>Body: any subset of updatable fields (partial)</li>\r\n    </ul>\r\n  </div>\r\n  <!-- Request -->\r\n  <div style=\"border:1px solid #e5e7eb;border-radius:12px;padding:14px;background:#ffffff;\">\r\n    <div style=\"display:flex;align-items:center;gap:8px;margin-bottom:8px;\">\r\n      <span style=\"font-weight:700;font-size:14px;\">Request</span>\r\n      <span style=\"font-size:12px;padding:2px 8px;border:1px solid #0ea5e9;color:#0284c7;border-radius:999px;background:#ecfeff;\">application/json</span>\r\n    </div>\r\n    <pre style=\"margin:0;padding:12px;background:#0b102117;border:1px solid #e5e7eb;border-radius:10px;overflow:auto;\">\r\n      <code language=\"json\">\r\n\t\t\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\t\"cardName\": \"Ali Khan (Updated)\"\r\n\t\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t\t</code>\r\n    </pre>\r\n  </div>\r\n  <!-- Responses -->\r\n  <div style=\"display:grid;gap:12px;\">\r\n    <div style=\"border:1px solid #e5e7eb;border-radius:12px;padding:14px;background:#ffffff;\">\r\n      <div style=\"display:flex;align-items:center;gap:8px;margin-bottom:8px;\">\r\n        <span style=\"font-weight:700;font-size:14px;\">Success</span>\r\n        <span style=\"font-size:12px;padding:2px 8px;border:1px solid #22c55e;color:#16a34a;border-radius:999px;background:#f0fdf4;\">200 OK</span>\r\n      </div>\r\n      <pre style=\"margin:0;padding:12px;background:#0b102117;border:1px solid #e5e7eb;border-radius:10px;overflow:auto;\">\r\n        <code language=\"json\">\r\n\t\t\t\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\t\t\"success\": true,\r\n\t\t\t\t\t\t\t\t\t\"data\": { \"studentCode\": \"STU-0001\", \"studentName\": \"Ali Khan (Updated)\" },\r\n\t\t\t\t\t\t\t\t\t\"error\": null\r\n\t\t\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t\t\t</code>\r\n      </pre>\r\n    </div>\r\n    <div style=\"border:1px solid #e5e7eb;border-radius:12px;padding:14px;background:#ffffff;\">\r\n      <div style=\"display:flex;align-items:center;gap:8px;margin-bottom:8px;\">\r\n        <span style=\"font-weight:700;font-size:14px;\">Error</span>\r\n        <span style=\"font-size:12px;padding:2px 8px;border:1px solid #ef4444;color:#ef4444;border-radius:999px;background:#fef2f2;\">404 Not Found</span>\r\n      </div>\r\n      <pre style=\"margin:0;padding:12px;background:#0b102117;border:1px solid #e5e7eb;border-radius:10px;overflow:auto;\">\r\n        <code language=\"json\">\r\n\t\t\t\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\t\t\"success\": false,\r\n\t\t\t\t\t\t\t\t\t\"data\": null,\r\n\t\t\t\t\t\t\t\t\t\"error\": \"BP not found\"\r\n\t\t\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t\t\t</code>\r\n      </pre>\r\n    </div>\r\n    <div style=\"border:1px solid #e5e7eb;border-radius:12px;padding:14px;background:#ffffff;\">\r\n      <div style=\"display:flex;align-items:center;gap:8px;margin-bottom:8px;\">\r\n        <span style=\"font-weight:700;font-size:14px;\">Error</span>\r\n        <span style=\"font-size:12px;padding:2px 8px;border:1px solid #ef4444;color:#ef4444;border-radius:999px;background:#fef2f2;\">400 Bad Request</span>\r\n      </div>\r\n      <pre style=\"margin:0;padding:12px;background:#0b102117;border:1px solid #e5e7eb;border-radius:10px;overflow:auto;\">\r\n        <code language=\"json\">\r\n\t\t\t\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\t\t\"success\": false,\r\n\t\t\t\t\t\t\t\t\t\"data\": null,\r\n\t\t\t\t\t\t\t\t\t\"error\": \"Invalid payload\"\r\n\t\t\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t\t\t</code>\r\n      </pre>\r\n    </div>\r\n  </div>\r\n</div>",
+        "parameters": [
+          {
+            "name": "cardCode",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BusinessPartnerPatch"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Updated.",
+            "content": {
+              "application/json": {
+                "schema": { }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": { }
+              }
+            }
+          },
+          "404": {
+            "description": "BP not found.",
+            "content": {
+              "application/json": {
+                "schema": { }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": { }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/posting/orders": {
+      "post": {
+        "tags": [
+          "Posting"
+        ],
+        "summary": "Create Sales Order",
+        "description": "\r\n<h3>Auth</h3>\r\n<p>JWT in <code>Authorization</code> header.</p>\r\n\r\n<h3>Mandatory fields</h3>\r\n<ul>\r\n  <li><code>docDate</code> (ISO8601)</li>\r\n  <li><code>docDueDate</code> (ISO8601)</li>\r\n  <li><code>cardCode</code> (string)</li>\r\n  <li>At least one <code>documentLines</code> item with:\r\n    <ul>\r\n      <li><code>itemCode</code> (string)</li>\r\n      <li><code>quantity</code> (number)</li>\r\n      <li><code>warehouseCode</code> (string)</li>\r\n    </ul>\r\n  </li>\r\n</ul>\r\n\r\n<details>\r\n  <summary><b>Basic Request example</b></summary>\r\n  <pre><code>{\r\n  \"docDate\": \"2025-09-10T14:00:00Z\",\r\n  \"docDueDate\": \"2025-09-10T14:00:00Z\",\r\n  \"cardCode\": \"C0001\",\r\n  \"documentLines\": [\r\n    { \"itemCode\": \"ITM-001\", \"quantity\": 2, \"unitPrice\": 50.0}\r\n  ]\r\n}</code></pre>\r\n</details>\r\n\r\n<details open>\r\n  <summary><b>Request example 2</b></summary>\r\n  <pre><code>{\r\n  \"docDate\": \"2025-09-28T00:00:00\",\r\n  \"docDueDate\": \"2025-12-28T00:00:00\",\r\n  \"taxDate\": \"2025-09-28T00:00:00\",\r\n  \"cardCode\": \"H230199\",\r\n  \"comments\": \"Sales order with installments\",\r\n  \"series\": null,\r\n  \"documentLines\": [\r\n    {\r\n      \"itemCode\": \"INV-100731\",\r\n      \"quantity\": 10,\r\n      \"unitPrice\": 50,\r\n      \"discountPercent\": 5\r\n    },\r\n    {\r\n      \"itemCode\": \"INV-100731\",\r\n      \"quantity\": 5,\r\n      \"unitPrice\": 100,\r\n      \"discountPercent\": 0\r\n    }\r\n  ]\r\n}</code></pre>\r\n</details>\r\n\r\n<h3>Success (200) example</h3>\r\n<pre><code>{\r\n  \"success\": true,\r\n  \"data\": { \"documentEntry\": 123, \"docNumber\": 456 },\r\n  \"error\": null\r\n}</code></pre>\r\n\r\n<h3>Error (400/500) example</h3>\r\n<pre><code>{\r\n  \"success\": false,\r\n  \"data\": null,\r\n  \"error\": \"Item ITM-001 not found\"\r\n}</code></pre>",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Document"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": { }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/posting/invoices": {
+      "post": {
+        "tags": [
+          "Posting"
+        ],
+        "summary": "Create AR Invoice",
+        "description": "\r\n<h3>Auth</h3>\r\n<p>JWT in <code>Authorization</code> header.</p>\r\n\r\n<h3>Mandatory fields</h3>\r\n<ul>\r\n  <li><code>docDate</code> (ISO8601)</li>\r\n  <li><code>docDueDate</code> (ISO8601)</li>\r\n  <li><code>cardCode</code> (string)</li>\r\n  <li>At least one <code>documentLines</code> item with:\r\n    <ul>\r\n      <li><code>itemCode</code> (string)</li>\r\n      <li><code>quantity</code> (number)</li>\r\n      <li><code>warehouseCode</code> (string)</li>\r\n    </ul>\r\n  </li>\r\n</ul>\r\n\r\n<details>\r\n  <summary><b>Basic Request example</b></summary>\r\n  <pre><code>{\r\n  \"docDate\": \"2025-09-28\",\r\n  \"docDueDate\": \"2025-09-10T14:00:00Z\",\r\n  \"cardCode\": \"C20000\",\r\n  \"documentLines\": [\r\n    { \"itemCode\": \"ITM-002\", \"quantity\": 5 }\r\n  ]\r\n}</code></pre>\r\n</details>\r\n\r\n<details open>\r\n  <summary><b>Request example (copy-from base delivery + installments)</b></summary>\r\n  <pre><code>{\r\n  \"docDate\": \"2025-09-28T00:00:00\",\r\n  \"docDueDate\": \"2025-12-28T00:00:00\",\r\n  \"cardCode\": \"H230199\",\r\n  \"comments\": \"Invoice created with base reference and installments\",\r\n  \"series\": null,\r\n  \"taxDate\": \"2025-09-28T00:00:00\",\r\n  \"documentLines\": [\r\n    {\r\n      \"itemCode\": \"INV-100731\",\r\n      \"quantity\": 10,\r\n      \"unitPrice\": 50,\r\n      \"discountPercent\": 5,\r\n      \"warehouseCode\": \"BISK-001\",\r\n      \"baseType\": 17,\r\n      \"baseEntry\": 1201,\r\n      \"baseLine\": 0\r\n    },\r\n    {\r\n      \"itemCode\": \"INV-100731\",\r\n      \"quantity\": 5,\r\n      \"unitPrice\": 100,\r\n      \"discountPercent\": 0,\r\n      \"warehouseCode\": \"BISK-001\",\r\n      \"baseType\": 17,\r\n      \"baseEntry\": 1201,\r\n      \"baseLine\": 1\r\n    }\r\n  ],\r\n  \"documentInstallments\": [\r\n    { \"dueDate\": \"2025-10-28T00:00:00\", \"total\": 500 },\r\n    { \"dueDate\": \"2025-11-28T00:00:00\", \"total\": 500 },\r\n    { \"dueDate\": \"2025-12-28T00:00:00\", \"total\": 700 }\r\n  ]\r\n}</code></pre>\r\n  <p style=\"font-size:12px;color:#64748b;\">Note: <code>baseType</code> typically uses SAP B1 object type (e.g., 15 = Delivery, 17 = Sales Order). Adjust according to your flow.</p>\r\n</details>\r\n\r\n<h3>Success (200) example</h3>\r\n<pre><code>{\r\n  \"success\": true,\r\n  \"data\": { \"documentEntry\": 234, \"docNumber\": 789 },\r\n  \"error\": null\r\n}</code></pre>\r\n\r\n<h3>Error (400/500) example</h3>\r\n<pre><code>{\r\n  \"success\": false,\r\n  \"data\": null,\r\n  \"error\": \"Base document missing\"\r\n}</code></pre>",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Document"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": { }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/posting/creditnotes": {
+      "post": {
+        "tags": [
+          "Posting"
+        ],
+        "summary": "Create AR Credit Note",
+        "description": "\r\n<h3>Auth</h3>\r\n<p>JWT in <code>Authorization</code> header.</p>\r\n\r\n<h3>Mandatory fields</h3>\r\n<ul>\r\n  <li><code>docDate</code> (ISO8601)</li>\r\n  <li><code>docDueDate</code> (ISO8601)</li>\r\n  <li><code>cardCode</code> (string)</li>\r\n  <li>At least one <code>documentLines</code> item with:\r\n    <ul>\r\n      <li><code>itemCode</code> (string)</li>\r\n      <li><code>quantity</code> (number)</li>\r\n      <li><code>warehouseCode</code> (string)</li>\r\n    </ul>\r\n  </li>\r\n</ul>\r\n\r\n<details>\r\n  <summary><b>Basic Request example</b></summary>\r\n  <pre><code>{\r\n  \"docDate\": \"2025-09-28\",\r\n  \"docDueDate\": \"2025-09-28\",\r\n  \"cardCode\": \"C20000\",\r\n  \"documentLines\": [\r\n    { \"itemCode\": \"ITM-003\", \"quantity\": 2 }\r\n  ]\r\n}</code></pre>\r\n</details>\r\n\r\n<details open>\r\n  <summary><b>Request example (credit against base invoice + installments)</b></summary>\r\n  <pre><code>{\r\n  \"docDate\": \"2025-09-28T00:00:00\",\r\n  \"docDueDate\": \"2025-12-28T00:00:00\",\r\n  \"cardCode\": \"H230199\",\r\n  \"comments\": \"Credit note referencing AR Invoice, with installments\",\r\n  \"series\": null,\r\n  \"taxDate\": \"2025-09-28T00:00:00\",\r\n  \"documentLines\": [\r\n    {\r\n      \"itemCode\": \"INV-100731\",\r\n      \"quantity\": 3,\r\n      \"unitPrice\": 100,\r\n      \"discountPercent\": 0,\r\n      \"warehouseCode\": \"BISK-001\",\r\n      \"baseType\": 13,\r\n      \"baseEntry\": 20045,\r\n      \"baseLine\": 1\r\n    }\r\n  ],\r\n  \"documentInstallments\": [\r\n    { \"dueDate\": \"2025-10-28T00:00:00\", \"total\": 150},\r\n    { \"dueDate\": \"2025-11-28T00:00:00\", \"total\": 150},\r\n    { \"dueDate\": \"2025-12-28T00:00:00\", \"total\": 200}\r\n  ]\r\n}</code></pre>\r\n  <p style=\"font-size:12px;color:#64748b;\">Note: <code>baseType</code> uses SAP B1 object type (e.g., 13 = AR Invoice). Provide correct <code>baseEntry</code>/<code>baseLine</code> from the target base document.</p>\r\n</details>\r\n\r\n<h3>Success (201) example</h3>\r\n<pre><code>{\r\n  \"success\": true,\r\n  \"data\": { \"documentEntry\": 345, \"docNumber\": 900 },\r\n  \"error\": null\r\n}</code></pre>\r\n\r\n<h3>Error (400/500) example</h3>\r\n<pre><code>{\r\n  \"success\": false,\r\n  \"data\": null,\r\n  \"error\": \"Invoice not found for base entry\"\r\n}</code></pre>",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Document"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": { }
+              }
+            }
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": { }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/posting/inventory/genexits": {
+      "post": {
+        "tags": [
+          "Posting"
+        ],
+        "summary": "Create Goods Issue (InventoryGenExits)",
+        "description": "<div style=\"margin:16px 0 18px 0;\">\r\n  <div style=\"font-weight:700;font-size:15px;margin-bottom:8px;\">Request (mandatory fields only)</div>\r\n  <pre style=\"padding:12px;background:#0b102117;border:1px solid #e5e7eb;border-radius:12px;\">\r\n    <code language=\"json\">\r\n\t\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\"docDate\": \"2025-09-28\",\r\n\t\t\t\t\t\t\t\"documentLines\": [\r\n\t\t\t\t\t\t\t{ \"itemCode\": \"ITM-004\", \"quantity\": 1, \"warehouseCode\": \"01\" }\r\n\t\t\t\t\t\t\t]\r\n\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t</code>\r\n  </pre>\r\n</div>",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GoodsIssue"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": { }
+              }
+            }
+          },
+          "201": {
+            "description": "Created."
+          },
+          "400": {
+            "description": "Invalid payload."
+          },
+          "500": {
+            "description": "Service Layer error."
+          }
+        }
+      }
+    },
+    "/api/v1/posting/payments/incoming": {
+      "post": {
+        "tags": [
+          "Posting"
+        ],
+        "summary": "Create Incoming Payment",
+        "description": "\r\n<h3>Auth</h3>\r\n<p>JWT in <code>Authorization</code> header.</p>\r\n\r\n<h3>Mandatory fields</h3>\r\n<ul>\r\n  <li><code>docType</code> (e.g., <code>rCustomer</code>)</li>\r\n  <li><code>docDate</code> (ISO8601)</li>\r\n  <li><code>cardCode</code> (string)</li>\r\n  <li>At least one of:\r\n    <ul>\r\n      <li><code>paymentInvoices</code> (apply to invoices)</li>\r\n      <li><code>cashSum</code>/<code>transferSum</code>/<code>paymentCreditCards</code></li>\r\n    </ul>\r\n  </li>\r\n</ul>\r\n\r\n<details>\r\n  <summary><b>Request example — cash only</b></summary>\r\n  <pre><code>{\r\n  \"docType\": \"rCustomer\",\r\n  \"docDate\": \"2025-09-28\",\r\n  \"cardCode\": \"C20000\",\r\n  \"cashAccount\": \"110010\",\r\n  \"cashSum\": 500.0,\r\n\"paymentInvoices\": [\r\n    { \"docEntry\": 20101, \"sumApplied\": 1000.0 }\r\n  ]\r\n}</code></pre>\r\n</details>\r\n\r\n<details open>\r\n  <summary><b>Request example — apply to invoice + bank transfer</b></summary>\r\n  <pre><code>{\r\n  \"docType\": \"rCustomer\",\r\n  \"docDate\": \"2025-09-28T00:00:00\",\r\n  \"cardCode\": \"C20000\",\r\n  \"transferAccount\": \"120020\",\r\n  \"transferSum\": 300.0,\r\n  \"transferDate\": \"2025-09-28T00:00:00\",\r\n  \"paymentInvoices\": [\r\n    { \"docEntry\": 20045, \"sumApplied\": 300.0 }\r\n  ],\r\n  \"paymentCreditCards\": []\r\n}</code></pre>\r\n</details>\r\n\r\n<details>\r\n  <summary><b>Request example — credit card capture</b></summary>\r\n  <pre><code>{\r\n  \"docType\": \"rCustomer\",\r\n  \"docDate\": \"2025-09-28T00:00:00\",\r\n  \"cardCode\": \"C20000\",\r\n  \"paymentInvoices\": [\r\n    { \"docEntry\": 20101, \"sumApplied\": 1000.0 }\r\n  ],\r\n  \"paymentCreditCards\": [\r\n    {\r\n      \"creditCard\": 1,\r\n      \"creditAcct\": \"130030\",\r\n      \"creditCardNumber\": \"411111******1111\",\r\n      \"cardValidUntil\": \"2026-12-31T00:00:00\",\r\n      \"voucherNum\": \"AUTH-998877\",\r\n      \"creditSum\": 1000.0\r\n    }\r\n  ]\r\n}</code></pre>\r\n</details>\r\n\r\n<p style=\"font-size:12px;color:#64748b;\">\r\nNotes:\r\n<ul>\r\n<li><code>paymentInvoices[].docEntry</code> is the target A/R Invoice entry; <code>sumApplied</code> is the amount to clear.</li>\r\n<li>Supply either <code>cashSum</code>, <code>transferSum</code>, and/or <code>paymentCreditCards</code>. You can combine them.</li>\r\n</ul>\r\n</p>\r\n\r\n<h3>Success (200) example</h3>\r\n<pre><code>{\r\n  \"success\": true,\r\n  \"data\": { \"documentEntry\": 567, \"docNumber\": 902 },\r\n  \"error\": null\r\n}</code></pre>\r\n\r\n<h3>Error (400/500) example</h3>\r\n<pre><code>{\r\n  \"success\": false,\r\n  \"data\": null,\r\n  \"error\": \"Invoice 20045 is not open\"\r\n}</code></pre>",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IncomingPayment"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": { }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/posting/payments/outgoing": {
+      "post": {
+        "tags": [
+          "Posting"
+        ],
+        "summary": "Create Outgoing Payment",
+        "description": "\r\n<h3>Auth</h3>\r\n<p>JWT in <code>Authorization</code> header.</p>\r\n\r\n<h3>Mandatory fields</h3>\r\n<ul>\r\n  <li><code>docType</code> (e.g., <code>rCustomer</code> / Customer / refund)</li>\r\n  <li><code>docDate</code> (ISO8601)</li>\r\n  <li><code>cardCode</code> (string)</li>\r\n  <li>At least one of:\r\n    <ul>\r\n      <li><code>paymentInvoices</code> (apply to target docs)</li>\r\n      <li><code>cashSum</code>/<code>transferSum</code>/<code>paymentCreditCards</code></li>\r\n    </ul>\r\n  </li>\r\n</ul>\r\n\r\n<details>\r\n  <summary><b>Request example — Csutomer cash</b></summary>\r\n  <pre><code>{\r\n  \"docType\": \"rCustomer\",\r\n  \"docDate\": \"2025-09-28\",\r\n  \"cardCode\": \"V10000\",\r\n  \"cashAccount\": \"210010\",\r\n  \"cashSum\": 250.0\r\n}</code></pre>\r\n</details>\r\n\r\n<details open>\r\n  <summary><b>Request example — settle Csutomer invoice via bank transfer</b></summary>\r\n  <pre><code>{\r\n  \"docType\": \"rCustomer\",\r\n  \"docDate\": \"2025-09-28T00:00:00\",\r\n  \"cardCode\": \"V10000\",\r\n  \"transferAccount\": \"220020\",\r\n  \"transferSum\": 500.0,\r\n  \"transferDate\": \"2025-09-28T00:00:00\",\r\n  \"paymentInvoices\": [\r\n    { \"docEntry\": 51022, \"sumApplied\": 500.0 }\r\n  ],\r\n  \"paymentCreditCards\": []\r\n}</code></pre>\r\n</details>\r\n\r\n<details>\r\n  <summary><b>Request example — refund to customer via credit card</b></summary>\r\n  <pre><code>{\r\n  \"docType\": \"rCustomer\",\r\n  \"docDate\": \"2025-09-28T00:00:00\",\r\n  \"cardCode\": \"C20000\",\r\n  \"paymentInvoices\": [],\r\n  \"paymentCreditCards\": [\r\n    {\r\n      \"creditCard\": 1,\r\n      \"creditAcct\": \"230030\",\r\n      \"creditCardNumber\": \"411111******1111\",\r\n      \"cardValidUntil\": \"2027-06-30T00:00:00\",\r\n      \"voucherNum\": \"REF-445566\",\r\n      \"creditSum\": 300.0\r\n    }\r\n  ]\r\n}</code></pre>\r\n</details>\r\n\r\n<p style=\"font-size:12px;color:#64748b;\">\r\nNotes:\r\n<ul>\r\n<li>For refunds to customers, you may not have target invoices; post via cash/transfer/credit card components as appropriate.</li>\r\n</ul>\r\n</p>\r\n\r\n<h3>Success (200) example</h3>\r\n<pre><code>{\r\n  \"success\": true,\r\n  \"data\": { \"documentEntry\": 678, \"docNumber\": 903 },\r\n  \"error\": null\r\n}</code></pre>\r\n\r\n<h3>Error (400/500) example</h3>\r\n<pre><code>{\r\n  \"success\": false,\r\n  \"data\": null,\r\n  \"error\": \"No Matching Records Found\"\r\n}</code></pre>",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IncomingPayment"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": { }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Bpaddress": {
+        "required": [
+          "addressName",
+          "addressType"
+        ],
+        "type": "object",
+        "properties": {
+          "addressName": {
+            "type": "string",
+            "nullable": true
+          },
+          "street": {
+            "type": "string",
+            "nullable": true
+          },
+          "block": {
+            "type": "string",
+            "nullable": true
+          },
+          "zipCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "nullable": true
+          },
+          "country": {
+            "type": "string",
+            "nullable": true
+          },
+          "addressType": {
+            "type": "string",
+            "nullable": true
+          },
+          "addressName2": {
+            "type": "string",
+            "nullable": true
+          },
+          "addressName3": {
+            "type": "string",
+            "nullable": true
+          },
+          "streetNo": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "BusinessPartner": {
+        "required": [
+          "cardCode",
+          "cardName",
+          "cardType",
+          "u_Academic"
+        ],
+        "type": "object",
+        "properties": {
+          "cardCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "cardName": {
+            "type": "string",
+            "nullable": true
+          },
+          "cardType": {
+            "type": "string",
+            "nullable": true
+          },
+          "cellular": {
+            "type": "string",
+            "nullable": true
+          },
+          "phone1": {
+            "type": "string",
+            "nullable": true
+          },
+          "phone2": {
+            "type": "string",
+            "nullable": true
+          },
+          "fax": {
+            "type": "string",
+            "nullable": true
+          },
+          "u_Level": {
+            "type": "string",
+            "nullable": true
+          },
+          "u_Grade": {
+            "type": "string",
+            "nullable": true
+          },
+          "u_Section": {
+            "type": "string",
+            "nullable": true
+          },
+          "u_Academic": {
+            "type": "string",
+            "nullable": true
+          },
+          "u_Status": {
+            "type": "string",
+            "nullable": true
+          },
+          "u_Zone": {
+            "type": "string",
+            "nullable": true
+          },
+          "u_Bus": {
+            "type": "string",
+            "nullable": true
+          },
+          "u_Lunch": {
+            "type": "string",
+            "nullable": true
+          },
+          "u_Sch_system": {
+            "type": "string",
+            "nullable": true
+          },
+          "u_Year": {
+            "type": "string",
+            "nullable": true
+          },
+          "u_Area": {
+            "type": "string",
+            "nullable": true
+          },
+          "u_Taxi": {
+            "type": "string",
+            "nullable": true
+          },
+          "u_Block": {
+            "type": "string",
+            "nullable": true
+          },
+          "u_DateOfBirth": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "bpAddresses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Bpaddress"
+            },
+            "nullable": true
+          },
+          "contactEmployees": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Contactemployee"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "BusinessPartnerPatch": {
+        "type": "object",
+        "properties": {
+          "cardName": {
+            "type": "string",
+            "nullable": true
+          },
+          "cellular": {
+            "type": "string",
+            "nullable": true
+          },
+          "phone1": {
+            "type": "string",
+            "nullable": true
+          },
+          "phone2": {
+            "type": "string",
+            "nullable": true
+          },
+          "fax": {
+            "type": "string",
+            "nullable": true
+          },
+          "u_Level": {
+            "type": "string",
+            "nullable": true
+          },
+          "u_Grade": {
+            "type": "string",
+            "nullable": true
+          },
+          "u_Section": {
+            "type": "string",
+            "nullable": true
+          },
+          "u_Academic": {
+            "type": "string",
+            "nullable": true
+          },
+          "u_Status": {
+            "type": "string",
+            "nullable": true
+          },
+          "u_Zone": {
+            "type": "string",
+            "nullable": true
+          },
+          "u_Bus": {
+            "type": "string",
+            "nullable": true
+          },
+          "u_Lunch": {
+            "type": "string",
+            "nullable": true
+          },
+          "u_Sch_system": {
+            "type": "string",
+            "nullable": true
+          },
+          "u_Year": {
+            "type": "string",
+            "nullable": true
+          },
+          "u_Area": {
+            "type": "string",
+            "nullable": true
+          },
+          "u_Taxi": {
+            "type": "string",
+            "nullable": true
+          },
+          "u_Block": {
+            "type": "string",
+            "nullable": true
+          },
+          "u_DateOfBirth": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "bpAddresses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Bpaddress"
+            },
+            "nullable": true
+          },
+          "contactEmployees": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Contactemployee"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Contactemployee": {
+        "required": [
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "position": {
+            "type": "string",
+            "nullable": true
+          },
+          "address": {
+            "type": "string",
+            "nullable": true
+          },
+          "phone1": {
+            "type": "string",
+            "nullable": true
+          },
+          "phone2": {
+            "type": "string",
+            "nullable": true
+          },
+          "mobilePhone": {
+            "type": "string",
+            "nullable": true
+          },
+          "fax": {
+            "type": "string",
+            "nullable": true
+          },
+          "e_Mail": {
+            "type": "string",
+            "nullable": true
+          },
+          "remarks1": {
+            "type": "string",
+            "nullable": true
+          },
+          "remarks2": {
+            "type": "string",
+            "nullable": true
+          },
+          "gender": {
+            "type": "string",
+            "nullable": true
+          },
+          "profession": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "cityOfBirth": {
+            "type": "string",
+            "nullable": true
+          },
+          "firstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "middleName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreditCards": {
+        "required": [
+          "cardValidUntil",
+          "creditAcct",
+          "creditCard",
+          "creditCardNumber",
+          "creditSum",
+          "voucherNum"
+        ],
+        "type": "object",
+        "properties": {
+          "creditCard": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "creditAcct": {
+            "type": "string",
+            "nullable": true
+          },
+          "creditCardNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "cardValidUntil": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "voucherNum": {
+            "type": "string",
+            "nullable": true
+          },
+          "creditSum": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Document": {
+        "required": [
+          "cardCode",
+          "docDate",
+          "docDueDate",
+          "documentLines"
+        ],
+        "type": "object",
+        "properties": {
+          "docDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "docDueDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "cardCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "comments": {
+            "type": "string",
+            "nullable": true
+          },
+          "series": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "taxDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "documentLines": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Documentline"
+            },
+            "nullable": true
+          },
+          "documentInstallments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InstallmentInvoice"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Documentline": {
+        "type": "object",
+        "properties": {
+          "itemCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "quantity": {
+            "type": "number",
+            "format": "double"
+          },
+          "unitPrice": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "discountPercent": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "warehouseCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "baseType": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "baseEntry": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "baseLine": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GoodsIssue": {
+        "required": [
+          "docDate",
+          "docDueDate",
+          "documentLines"
+        ],
+        "type": "object",
+        "properties": {
+          "docDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "docDueDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "comments": {
+            "type": "string",
+            "nullable": true
+          },
+          "taxDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "documentLines": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Issueline"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "IncomingPayment": {
+        "required": [
+          "cardCode",
+          "docDate",
+          "docType",
+          "paymentInvoices"
+        ],
+        "type": "object",
+        "properties": {
+          "docType": {
+            "type": "string",
+            "nullable": true
+          },
+          "docDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "cardCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "cashAccount": {
+            "type": "string",
+            "nullable": true
+          },
+          "cashSum": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "transferAccount": {
+            "type": "string",
+            "nullable": true
+          },
+          "transferSum": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "transferDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "paymentInvoices": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Paymentinvoice"
+            },
+            "nullable": true
+          },
+          "paymentCreditCards": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CreditCards"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "InstallmentInvoice": {
+        "type": "object",
+        "properties": {
+          "dueDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "total": {
+            "type": "number",
+            "format": "double"
+          },
+          "percentage": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Issueline": {
+        "required": [
+          "itemCode"
+        ],
+        "type": "object",
+        "properties": {
+          "itemCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "quantity": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ItemMaster": {
+        "required": [
+          "itemCode",
+          "itemName"
+        ],
+        "type": "object",
+        "properties": {
+          "itemCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "itemName": {
+            "type": "string",
+            "nullable": true
+          },
+          "foreignName": {
+            "type": "string",
+            "nullable": true
+          },
+          "itemsGroupCode": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "barCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "purchaseItem": {
+            "type": "string",
+            "nullable": true
+          },
+          "salesItem": {
+            "type": "string",
+            "nullable": true
+          },
+          "inventoryItem": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ItemMasterPatch": {
+        "type": "object",
+        "properties": {
+          "itemName": {
+            "type": "string",
+            "nullable": true
+          },
+          "foreignName": {
+            "type": "string",
+            "nullable": true
+          },
+          "barCode": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LoginRequest": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Paymentinvoice": {
+        "required": [
+          "docEntry",
+          "sumApplied"
+        ],
+        "type": "object",
+        "properties": {
+          "docEntry": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "sumApplied": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "http",
+        "description": "Enter JWT only (no 'Bearer ' prefix).",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "security": [
+    {
+      "Bearer": [ ]
+    }
+  ]
+}

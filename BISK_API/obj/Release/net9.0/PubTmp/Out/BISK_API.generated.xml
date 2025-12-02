@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GardeningAPI</name>
+    </assembly>
+    <members>
+        <member name="T:gardnerAPIs.Common.OperationResult`1">
+            <summary>
+            Generic operation envelope used by business/service layers.
+            </summary>
+        </member>
+        <member name="P:gardnerAPIs.Common.OperationResult`1.IsSuccess">
+            <summary>True when the operation succeeded end-to-end.</summary>
+        </member>
+        <member name="P:gardnerAPIs.Common.OperationResult`1.Result">
+            <summary>Successful result payload (null if IsSuccess = false).</summary>
+        </member>
+        <member name="P:gardnerAPIs.Common.OperationResult`1.ErrorMessages">
+            <summary>One or more errors when IsSuccess = false (normalized, human-friendly).</summary>
+        </member>
+        <member name="P:gardnerAPIs.Common.OperationResult`1.CorrelationId">
+            <summary>Optional correlation/tracing id if you want to set it.</summary>
+        </member>
+        <member name="P:gardnerAPIs.Common.OperationResult`1.HttpStatus">
+            <summary>Optional HTTP status associated with this operation (if applicable).</summary>
+        </member>
+        <member name="T:gardnerAPIs.Common.ErrorResponse">
+            <summary>
+            Normalized error block. Backward-compatible with your previous structure,
+            but extended with friendly fields.
+            </summary>
+        </member>
+        <member name="P:gardnerAPIs.Common.ErrorResponse.error">
+            <summary>Legacy/compatible holder (code + message.value).</summary>
+        </member>
+        <member name="P:gardnerAPIs.Common.ErrorResponse.source">
+            <summary>High-level source (e.g., "ServiceLayer", "HttpClient", "ODBC").</summary>
+        </member>
+        <member name="P:gardnerAPIs.Common.ErrorResponse.httpStatus">
+            <summary>HTTP status code if known (e.g., 400, 401, 500).</summary>
+        </member>
+        <member name="P:gardnerAPIs.Common.ErrorResponse.details">
+            <summary>Optional list of granular error items (from SL 'details').</summary>
+        </member>
+        <member name="P:gardnerAPIs.Common.ErrorResponse.raw">
+            <summary>The raw payload we parsed (only for diagnostics).</summary>
+        </member>
+        <member name="T:gardnerAPIs.Common.ErrorDetails">
+            <summary>Legacy/compatible shell used by your existing clients.</summary>
+        </member>
+        <member name="P:gardnerAPIs.Common.ErrorDetails.code">
+            <summary>Service-layer code (or fallback HTTP code).</summary>
+        </member>
+        <member name="P:gardnerAPIs.Common.ErrorDetails.message">
+            <summary>Localized message object (lang + value).</summary>
+        </member>
+        <member name="T:gardnerAPIs.Common.ErrorMessage">
+            <summary>Localized message.</summary>
+        </member>
+        <member name="T:gardnerAPIs.Common.ErrorDetailItem">
+            <summary>Single detail row, when SL provides an array in the error.</summary>
+        </member>
+        <member name="M:gardnerAPIs.Controllers.PostingController.PostInvoice(gardnerAPIs.Model.Document,System.Threading.CancellationToken)">
+            <summary>Create AR Invoice</summary>
+        </member>
+        <member name="T:BISK_API.Services.ServiceLayerClient">
+            Auto-managed SAP B1 Service Layer v2 client:
+             - Logs in on demand with technical user from config
+             - Keeps session via cookies + local expiry timestamp
+             - Retries once on 401 / "Invalid session"/"Session timeout"
+             - Can BYPASS SSL if ServiceLayerOptions.SkipTlsVerify=true (DEV ONLY)
+        </member>
+    </members>
+</doc>

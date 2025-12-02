@@ -1,0 +1,9 @@
+C:\Hassan\AL-Zara\Gardening Addon\obj\x64\Debug\EmptyAddon.csproj.AssemblyReference.cache
+C:\Hassan\AL-Zara\Gardening Addon\obj\x64\Debug\Interop.Microsoft.Office.Core.dll
+C:\Hassan\AL-Zara\Gardening Addon\obj\x64\Debug\Interop.SAPbobsCOM.dll
+C:\Hassan\AL-Zara\Gardening Addon\obj\x64\Debug\Interop.SAPbouiCOM.dll
+C:\Hassan\AL-Zara\Gardening Addon\obj\x64\Debug\EmptyAddon.csproj.ResolveComReference.cache
+C:\Hassan\AL-Zara\Gardening Addon\obj\x64\Debug\EmptyAddon.My_Project.Resources.resources
+C:\Hassan\AL-Zara\Gardening Addon\obj\x64\Debug\EmptyAddon.Properties.Resources.resources
+C:\Hassan\AL-Zara\Gardening Addon\obj\x64\Debug\EmptyAddon.csproj.GenerateResource.cache
+C:\Hassan\AL-Zara\Gardening Addon\obj\x64\Debug\EmptyAddon.csproj.CoreCompileInputs.cache

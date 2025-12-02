@@ -1,0 +1,133 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Huzaifa Mumtaz\\Gardening App\\New updated Addon\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{2F8A2E6D-94B6-475A-A806-1330FA14D003}|GardenAPP.csproj|c:\\huzaifa mumtaz\\gardening app\\new updated addon\\business layer\\tablecreation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2F8A2E6D-94B6-475A-A806-1330FA14D003}|GardenAPP.csproj|solutionrelative:business layer\\tablecreation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2F8A2E6D-94B6-475A-A806-1330FA14D003}|GardenAPP.csproj|C:\\Huzaifa Mumtaz\\Gardening App\\New updated Addon\\application layer\\configuration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2F8A2E6D-94B6-475A-A806-1330FA14D003}|GardenAPP.csproj|solutionrelative:application layer\\configuration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2F8A2E6D-94B6-475A-A806-1330FA14D003}|GardenAPP.csproj|C:\\Huzaifa Mumtaz\\Gardening App\\New updated Addon\\business layer\\globalfunction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2F8A2E6D-94B6-475A-A806-1330FA14D003}|GardenAPP.csproj|solutionrelative:business layer\\globalfunction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2F8A2E6D-94B6-475A-A806-1330FA14D003}|GardenAPP.csproj|C:\\Huzaifa Mumtaz\\Gardening App\\New updated Addon\\business layer\\eventhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2F8A2E6D-94B6-475A-A806-1330FA14D003}|GardenAPP.csproj|solutionrelative:business layer\\eventhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2F8A2E6D-94B6-475A-A806-1330FA14D003}|GardenAPP.csproj|C:\\Huzaifa Mumtaz\\Gardening App\\New updated Addon\\presentation layer\\menu.xml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{2F8A2E6D-94B6-475A-A806-1330FA14D003}|GardenAPP.csproj|solutionrelative:presentation layer\\menu.xml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2F8A2E6D-94B6-475A-A806-1330FA14D003}|GardenAPP.csproj|C:\\Huzaifa Mumtaz\\Gardening App\\New updated Addon\\business layer\\globalvariables.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2F8A2E6D-94B6-475A-A806-1330FA14D003}|GardenAPP.csproj|solutionrelative:business layer\\globalvariables.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2F8A2E6D-94B6-475A-A806-1330FA14D003}|GardenAPP.csproj|C:\\Huzaifa Mumtaz\\Gardening App\\New updated Addon\\business layer\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2F8A2E6D-94B6-475A-A806-1330FA14D003}|GardenAPP.csproj|solutionrelative:business layer\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "GlobalFunction.cs",
+              "DocumentMoniker": "C:\\Huzaifa Mumtaz\\Gardening App\\New updated Addon\\Business Layer\\GlobalFunction.cs",
+              "RelativeDocumentMoniker": "Business Layer\\GlobalFunction.cs",
+              "ToolTip": "C:\\Huzaifa Mumtaz\\Gardening App\\New updated Addon\\Business Layer\\GlobalFunction.cs",
+              "RelativeToolTip": "Business Layer\\GlobalFunction.cs",
+              "ViewState": "AgIAAGwEAAAAAAAAAAD4v4QEAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-20T14:34:39.425Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Menu.xml",
+              "DocumentMoniker": "C:\\Huzaifa Mumtaz\\Gardening App\\New updated Addon\\Presentation Layer\\Menu.xml",
+              "RelativeDocumentMoniker": "Presentation Layer\\Menu.xml",
+              "ToolTip": "C:\\Huzaifa Mumtaz\\Gardening App\\New updated Addon\\Presentation Layer\\Menu.xml",
+              "RelativeToolTip": "Presentation Layer\\Menu.xml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAB4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003576|",
+              "WhenOpened": "2025-11-17T07:55:16.437Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "GlobalVariables.cs",
+              "DocumentMoniker": "C:\\Huzaifa Mumtaz\\Gardening App\\New updated Addon\\Business Layer\\GlobalVariables.cs",
+              "RelativeDocumentMoniker": "Business Layer\\GlobalVariables.cs",
+              "ToolTip": "C:\\Huzaifa Mumtaz\\Gardening App\\New updated Addon\\Business Layer\\GlobalVariables.cs",
+              "RelativeToolTip": "Business Layer\\GlobalVariables.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAlwBUAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-17T07:53:34.473Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "EventHandler.cs",
+              "DocumentMoniker": "C:\\Huzaifa Mumtaz\\Gardening App\\New updated Addon\\Business Layer\\EventHandler.cs",
+              "RelativeDocumentMoniker": "Business Layer\\EventHandler.cs",
+              "ToolTip": "C:\\Huzaifa Mumtaz\\Gardening App\\New updated Addon\\Business Layer\\EventHandler.cs",
+              "RelativeToolTip": "Business Layer\\EventHandler.cs",
+              "ViewState": "AgIAABoAAAAAAAAAAAAAwLQAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-17T07:51:42.039Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "TableCreation.cs",
+              "DocumentMoniker": "C:\\Huzaifa Mumtaz\\Gardening App\\New updated Addon\\Business Layer\\TableCreation.cs",
+              "RelativeDocumentMoniker": "Business Layer\\TableCreation.cs",
+              "ToolTip": "C:\\Huzaifa Mumtaz\\Gardening App\\New updated Addon\\Business Layer\\TableCreation.cs",
+              "RelativeToolTip": "Business Layer\\TableCreation.cs",
+              "ViewState": "AgIAAG8AAAAAAAAAAAASwIQAAABEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-17T07:32:41.373Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Configuration.cs",
+              "DocumentMoniker": "C:\\Huzaifa Mumtaz\\Gardening App\\New updated Addon\\Application Layer\\Configuration.cs",
+              "RelativeDocumentMoniker": "Application Layer\\Configuration.cs",
+              "ToolTip": "C:\\Huzaifa Mumtaz\\Gardening App\\New updated Addon\\Application Layer\\Configuration.cs",
+              "RelativeToolTip": "Application Layer\\Configuration.cs",
+              "ViewState": "AgIAALwAAAAAAAAAAAAgwMUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-17T07:21:31.488Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Main.cs",
+              "DocumentMoniker": "C:\\Huzaifa Mumtaz\\Gardening App\\New updated Addon\\Business Layer\\Main.cs",
+              "RelativeDocumentMoniker": "Business Layer\\Main.cs",
+              "ToolTip": "C:\\Huzaifa Mumtaz\\Gardening App\\New updated Addon\\Business Layer\\Main.cs",
+              "RelativeToolTip": "Business Layer\\Main.cs",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAgwDoAAABCAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-17T07:55:45.393Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
