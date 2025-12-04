@@ -65,10 +65,16 @@ namespace BISK_API.Services
         {
             return _connection.GetItems(whsCode);
         }
-
-        public Task<Cart?> GetCartDetails(string CardCode)
+        public async Task<List<Cart>> GetCartDetails(string CardCode)
         {
-            return _connection.GetCartDetails(CardCode);
+            var result = await _connection.GetCartDetails(CardCode);
+            return result ?? new List<Cart>();
+        }
+
+        public async Task<Cart> GetSingleCartDetails(int docEntry)
+        {
+            var result = await _connection.GetSingleCartFromDB(docEntry);
+            return result;
         }
 
 

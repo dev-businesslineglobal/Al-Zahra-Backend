@@ -9,7 +9,7 @@ namespace GardenAPP
         #region Variables
         SAPbouiCOM.Form frmConfiguration, Link_Form;
         SAPbouiCOM.ComboBox cmbCustomerSeries,cmbCustomerGroup, cmbSaleOrder, cmbDelivery, cmbInvoice, cmbMemo, cmbIncoming,cmbDownPayment;
-        SAPbouiCOM.EditText whsCode;
+        SAPbouiCOM.EditText whsCode, cardPay, codPay;
         int CustomerSeries,CustomerGroup, SaleOrder, Delivery,Invoice, Memo, Incoming,DownPayment=0;
         SAPbobsCOM.Recordset oRecordSet;
 
@@ -32,6 +32,8 @@ namespace GardenAPP
                 cmbIncoming = frmConfiguration.Items.Item("9").Specific;
                 cmbDownPayment = frmConfiguration.Items.Item("11").Specific;
                 whsCode = frmConfiguration.Items.Item("etWare").Specific;
+                cardPay = frmConfiguration.Items.Item("etCardP").Specific;
+                codPay = frmConfiguration.Items.Item("etCodP").Specific;
                 
 
                 GlobalVariables.oGFun.LoadComboBox(cmbCustomerGroup, $@"SELECT T0.""GroupCode"",T0.""GroupName"" FROM OCRG T0 WHERE T0.""GroupType""='C'");
@@ -90,7 +92,9 @@ namespace GardenAPP
             T0.""U_IncSeries"",
             T0.""U_MemoSeries"",
             T0.""U_DPSeries"",
-            T0.""U_WHCode""
+            T0.""U_WHCode"",
+            T0.""U_CardPay"",
+            T0.""U_CodPay""
         FROM ""@GR_CONF"" T0 
         WHERE T0.""Code"" = 'GR'";
 
@@ -109,6 +113,8 @@ namespace GardenAPP
                     Memo = Convert.ToInt32(oRecSet.Fields.Item("U_MemoSeries").Value);
                     DownPayment = Convert.ToInt32(oRecSet.Fields.Item("U_DPSeries").Value);
                     whsCode.Value = oRecSet.Fields.Item("U_WHCode").Value.ToString();
+                    cardPay.Value = oRecSet.Fields.Item("U_CardPay").Value.ToString();
+                    codPay.Value = oRecSet.Fields.Item("U_CodPay").Value.ToString();
 
 
                     if (CustomerSeries > 0)
@@ -230,7 +236,17 @@ namespace GardenAPP
                                         // Set directly into your UserDataSource "udWare"
                                         frmConfiguration.DataSources.UserDataSources.Item("udWare").Value = whsCode;
 
+                                        break;
 
+                                    case "etCardP":
+                                        string cardPay = oDataTable.GetValue("AcctCode", 0).ToString();
+                                        // Set directly into your UserDataSource "udWare"
+                                        frmConfiguration.DataSources.UserDataSources.Item("udCard").Value = cardPay;
+                                        break;
+                                    case "etCodP":
+                                        string codPay = oDataTable.GetValue("AcctCode", 0).ToString();
+                                        // Set directly into your UserDataSource "udWare"
+                                        frmConfiguration.DataSources.UserDataSources.Item("udCod").Value = codPay;
                                         break;
 
 
@@ -353,6 +369,8 @@ namespace GardenAPP
                     oGeneralData.SetProperty("U_MemoSeries", this.cmbMemo.Selected.Value);
                     oGeneralData.SetProperty("U_DPSeries", this.cmbDownPayment.Selected.Value);
                     oGeneralData.SetProperty("U_WHCode", this.whsCode.Value);
+                    oGeneralData.SetProperty("U_CardPay", this.cardPay.Value);
+                    oGeneralData.SetProperty("U_CodPay", this.cardPay.Value);
                     
            
 
@@ -378,6 +396,8 @@ namespace GardenAPP
                     oGeneralData.SetProperty("U_MemoSeries", this.cmbMemo.Selected.Value);
                     oGeneralData.SetProperty("U_DPSeries", this.cmbDownPayment.Selected.Value);
                     oGeneralData.SetProperty("U_WHCode", this.whsCode.Value);
+                    oGeneralData.SetProperty("U_CardPay", this.cardPay.Value);
+                    oGeneralData.SetProperty("U_CodPay", this.cardPay.Value);
 
                     oGeneralService.Add(oGeneralData);
 

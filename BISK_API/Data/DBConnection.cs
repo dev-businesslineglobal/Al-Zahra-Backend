@@ -163,37 +163,62 @@ namespace GardeningAPI.Data
                 throw new ArgumentException("Email is required.", nameof(email));
 
             var sql = $@"
-            SELECT 
-                T0.""CardCode"",
-                T0.""CardName"" as userName,
-                T0.""Cellular"" as Mobile,
-                T0.""E_Mail"" AS EmailAddress,
-                T1.""U_BPSeries"" as customerSeries,
-                T1.""U_BPGroup"" as customerGroup,
-                T1.""U_SOSeries"" as saleOrderSeries ,
-                T1.""U_DelSeries"" as deliverySeries,
-                T1.""U_InvSeries"" as invoiceSeries,
-                T1.""U_IncSeries"" as incomingSeries,
-                T1.""U_MemoSeries"" as memoSeries,
-                T1.""U_DPSeries"" as downPaymentSeries,
-                T1.""U_WHCode"" as warehouseCode,
-                T0.""LangCode"" as langCode
-            FROM OCRD T0
-            LEFT JOIN ""@GR_CONF"" T1 ON 1=1
-            WHERE T1.""Code"" = 'GR'
-              AND T0.""E_Mail"" = '{email}'";
+                SELECT 
+                    T0.""CardCode"",
+                    T0.""CardName"" AS userName,
+                    T0.""Cellular"" AS Mobile,
+                    T0.""E_Mail"" AS EmailAddress,
+                    T0.""LangCode"" AS Language,
+
+                    T1.""U_BPSeries"" AS customerSeries,
+                    T1.""U_BPGroup"" AS customerGroup,
+                    T1.""U_SOSeries"" AS saleOrderSeries,
+                    T1.""U_DelSeries"" AS deliverySeries,
+                    T1.""U_InvSeries"" AS invoiceSeries,
+                    T1.""U_IncSeries"" AS incomingSeries,
+                    T1.""U_MemoSeries"" AS memoSeries,
+                    T1.""U_DPSeries"" AS downPaymentSeries,
+                    T1.""U_WHCode"" AS whsCode,
+                    T2.""Address"" AS AddressName,
+                    T2.""AdresType"" AS AddressType
+     
+
+                FROM OCRD T0
+                LEFT JOIN ""@GR_CONF"" T1 ON T1.""Code"" = 'GR'
+                LEFT JOIN CRD1 T2 ON T2.""CardCode"" = T0.""CardCode""
+                WHERE T2.""AdresType"" ='S' and T0.""E_Mail"" = '{email}'";
 
             using var connection = new OdbcConnection(_connectionString);
             await connection.OpenAsync();
 
-            var result = await connection.QueryAsync<SignUpResponse, ConfigurationData, SignUpResponse>(
+            var userDictionary = new Dictionary<string, SignUpResponse>();
+
+            var result = await connection.QueryAsync<
+                SignUpResponse,
+                ConfigurationData,
+                BPAddress,
+                SignUpResponse>(
                 sql,
-                (user, config) =>
+                (user, config, address) =>
                 {
-                    user.configuration = config;
-                    return user;
+                    if (!userDictionary.TryGetValue(user.CardCode, out var u))
+                    {
+                        u = user;
+                        u.configuration = config;
+                        u.BPAddresses = new List<BPAddress>().ToArray();
+                        userDictionary.Add(u.CardCode, u);
+                    }
+
+                    if (address != null)
+                    {
+                        var list = u.BPAddresses.ToList();
+                        list.Add(address);
+                        u.BPAddresses = list.ToArray();
+                    }
+
+                    return u;
                 },
-                splitOn: "customerSeries" // Column where mapping to Configuration starts
+                splitOn: "customerSeries,AddressName"
             );
 
             return result.FirstOrDefault();
@@ -281,28 +306,108 @@ namespace GardeningAPI.Data
         }
 
 
-        public async Task<Cart?> GetCartDetails(string CardCode)
+        public async Task<List<Cart>> GetCartDetails(string CardCode)
         {
             if (string.IsNullOrWhiteSpace(CardCode))
                 throw new ArgumentException("CardCode is required.", nameof(CardCode));
 
-            var sql = $@"SELECT T0.""CardCode"", T0.""CardName"", T0.""U_Cart"", T1.""DocEntry"", T1.""LineNum"", T1.""ItemCode"", T1.""Dscription"", T1.""Quantity"", T1.""Price"" as ""UnitPrice"" FROM ODRF T0  INNER JOIN DRF1 T1 ON T0.""DocEntry"" = T1.""DocEntry"" WHERE T0.""ObjType"" ='17' and T0.""CardCode""='{CardCode}' and IFNULL(""U_Cart"",'N')='Y'";
+            var sql = $@"SELECT 
+                    T0.""CardCode"",
+                    T0.""CardName"",
+                    T0.""U_Cart"",
+                    T0.""DocEntry"",
+                    T0.""DocDate"",
+                    T0.""DocDueDate"",
+                    T0.""TaxDate"",
+                    T0.""Series"",
+                    T1.""LineNum"",
+                    T1.""ItemCode"",
+                    T1.""Dscription"",
+                    T1.""Quantity"",
+                    T1.""Price"" AS ""UnitPrice""
+                FROM ODRF T0
+                INNER JOIN DRF1 T1 ON T0.""DocEntry"" = T1.""DocEntry""
+                WHERE T0.""ObjType"" ='17' 
+                  AND T0.""CardCode""='{CardCode}'
+                  AND IFNULL(T0.""U_Cart"",'N')='Y'";
+
+            using var connection = new OdbcConnection(_connectionString);
+
+            var lookup = new Dictionary<int, Cart>();
+
+            var result = await connection.QueryAsync<Cart, CartLines, Cart>(sql,
+                (header, line) =>
+                {
+                    if (!lookup.TryGetValue(header.DocEntry, out var cart))
+                    {
+                        cart = header;
+                        cart.DocumentLines = new CartLines[0]; // initialize empty array
+                        lookup.Add(cart.DocEntry, cart);
+                    }
+
+                    // Convert array to list temporarily to add a new line
+                    var lines = cart.DocumentLines.ToList();
+                    lines.Add(line);
+                    cart.DocumentLines = lines.ToArray(); // update array
+
+                    return cart;
+                },
+                splitOn: "LineNum"
+            );
+
+            return lookup.Values.ToList();
+        }
+
+        public async Task<Cart?> GetSingleCartFromDB(int docEntry)
+        {
+            var query = $@"
+SELECT 
+    T0.""CardCode"",
+    T0.""U_Cart"",
+    T0.""DocEntry"",
+    T0.""DocDate"",
+    T0.""DocDueDate"",
+    T0.""TaxDate"",
+    T0.""Series"",
+    T1.""LineNum"",
+    T1.""ItemCode"",
+    T1.""Dscription"",
+    T1.""Quantity"",
+    T1.""Price"" AS ""UnitPrice""
+FROM ODRF T0
+INNER JOIN DRF1 T1 ON T0.""DocEntry"" = T1.""DocEntry""
+WHERE T0.""ObjType"" ='17' 
+AND T0.""DocEntry"" = {docEntry} 
+AND IFNULL(T0.""U_Cart"",'N')='Y';";
 
             using var connection = new OdbcConnection(_connectionString);
             await connection.OpenAsync();
 
-            var result = await connection.QueryAsync<Cart, List<CartLines>, Cart>(
-                sql,
-                (user, config) =>
+            var cartDictionary = new Dictionary<int, Cart>();
+
+            var result = await connection.QueryAsync<Cart, CartLines, Cart>(
+                query,
+                (cart, line) =>
                 {
-                    user.DocumentLines = config;
-                    return user;
+                    if (!cartDictionary.TryGetValue(cart.DocEntry, out var currentCart))
+                    {
+                        currentCart = cart;
+                        currentCart.DocumentLines = Array.Empty<CartLines>();
+                        cartDictionary.Add(cart.DocEntry, currentCart);
+                    }
+
+                    // Add line to DocumentLines array
+                    currentCart.DocumentLines = currentCart.DocumentLines.Append(line).ToArray();
+                    return currentCart;
                 },
-                splitOn: "LineNum" // Column where mapping to Configuration starts
+                splitOn: "LineNum"
             );
 
-            return result.FirstOrDefault();
+            return cartDictionary.Values.FirstOrDefault();
         }
+
+
+
 
 
         // ======================= Items ========================= //

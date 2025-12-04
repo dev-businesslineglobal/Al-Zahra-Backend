@@ -72,6 +72,9 @@ namespace GardenAPP
                 GlobalVariables.oGFun.CreateUserFields("@GR_CONF", "MemoSeries", "A/R Credit Series", SAPbobsCOM.BoFieldTypes.db_Numeric,11);
                 GlobalVariables.oGFun.CreateUserFields("@GR_CONF", "DPSeries", "Down Payment Series", SAPbobsCOM.BoFieldTypes.db_Numeric,11);
                 GlobalVariables.oGFun.CreateUserFields("@GR_CONF", "WHCode", "Ware House Code", SAPbobsCOM.BoFieldTypes.db_Alpha, 50);
+                GlobalVariables.oGFun.CreateUserFields("@GR_CONF", "CardPay", "Card Payment", SAPbobsCOM.BoFieldTypes.db_Alpha, 50);
+                GlobalVariables.oGFun.CreateUserFields("@GR_CONF", "CodPay", "Cash on delivery Payment", SAPbobsCOM.BoFieldTypes.db_Alpha, 50);
+
                 GlobalVariables.oGFun.CreateUserFields("OCRD", "Verified", "User-OTP-Verification", SAPbobsCOM.BoFieldTypes.db_Alpha, 1);
                 GlobalVariables.oGFun.CreateUserFields("OCRD", "Password", "Password", SAPbobsCOM.BoFieldTypes.db_Alpha, 100);
                 GlobalVariables.oGFun.CreateUserFields("OCRD", "OTPCode", "OTP Code", SAPbobsCOM.BoFieldTypes.db_Alpha, 6);

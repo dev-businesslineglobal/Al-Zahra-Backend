@@ -64,6 +64,7 @@ namespace BISK_API.Services
             _http.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             if (!_http.DefaultRequestHeaders.Contains("Prefer"))
                 _http.DefaultRequestHeaders.Add("Prefer", "return=representation");
+                _http.DefaultRequestHeaders.Add("B1S-ReplaceCollectionsOnPatch", "true");
         }
 
         public void Dispose()
@@ -244,8 +245,8 @@ namespace BISK_API.Services
 
 
         public Task<OperationResult<ResponseItem>> AddCart(Drafts draft, CancellationToken ct = default) => Post<ResponseItem>("Drafts", draft, ct);
-        public Task<OperationResult<ResponseItem>> PutCart(string cardCode, Drafts put, CancellationToken ct = default)
-            => Put<ResponseItem>($"Drafts('{Uri.EscapeDataString(cardCode)}')", put, ct);
+        public Task<OperationResult<ResponseItem>> PutCart(int docEntry, Drafts put, CancellationToken ct = default)
+            => Patch<ResponseItem>($"Drafts({docEntry})", put, ct);
 
 
 
@@ -329,11 +330,11 @@ namespace BISK_API.Services
             return await ToResult<T>(res).ConfigureAwait(false);
         }
 
-        private async Task<OperationResult<T>> Put<T>(string table, object payload, CancellationToken ct)
-        {
-            using var res = await SendWithAuthAsync(new HttpMethod("PUT"), table, payload, ct).ConfigureAwait(false);
-            return await ToResult<T>(res).ConfigureAwait(false);
-        }
+        //private async Task<OperationResult<T>> Put<T>(string table, object payload, CancellationToken ct)
+        //{
+        //    using var res = await SendWithAuthAsync(new HttpMethod("PATCH"), table, payload, ct).ConfigureAwait(false);
+        //    return await ToResult<T>(res).ConfigureAwait(false);
+        //}
 
         private async Task<HttpResponseMessage> SendWithAuthAsync(HttpMethod method, string path, object? body, CancellationToken ct)
         {

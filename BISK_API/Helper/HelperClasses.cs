@@ -65,6 +65,29 @@ namespace GardeningAPI.Helper
         #endregion
 
 
+        internal string ConvertCodeToLanguage(string? code)
+        {
+            return code switch
+            {
+                "3" => "English",
+                "32" => "Arabic",
+                "40" => "Kurdish",
+                _ => "English" // default
+            };
+        }
+
+        internal int ConvertLanguageToCode(string language)
+        {
+            return language?.Trim().ToLower() switch
+            {
+                "english" => 3,
+                "arabic" => 32,
+                "kurdish" => 40,
+                _ => 3   // default English
+            };
+        }
+
+
 
     }
 }

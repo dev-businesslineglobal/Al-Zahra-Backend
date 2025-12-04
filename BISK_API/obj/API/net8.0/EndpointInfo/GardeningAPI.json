@@ -393,10 +393,64 @@
           }
         }
       }
+    },
+    "/api/v1/posting/UpdateCart": {
+      "patch": {
+        "tags": [
+          "Posting"
+        ],
+        "parameters": [
+          {
+            "name": "docEntry",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Drafts"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Drafts"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Drafts"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   },
   "components": {
     "schemas": {
+      "BPAddress": {
+        "required": [
+          "addressName"
+        ],
+        "type": "object",
+        "properties": {
+          "addressName": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "CreditCards": {
         "required": [
           "cardValidUntil",
@@ -460,14 +514,16 @@
             "type": "string",
             "nullable": true
           },
-          "series": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
           "taxDate": {
             "type": "string",
             "format": "date-time"
+          },
+          "bpAddresses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BPAddress"
+            },
+            "nullable": true
           },
           "documentLines": {
             "type": "array",
@@ -486,6 +542,10 @@
             "type": "string",
             "nullable": true
           },
+          "itemName": {
+            "type": "string",
+            "nullable": true
+          },
           "quantity": {
             "type": "number",
             "format": "double"
@@ -495,28 +555,8 @@
             "format": "double",
             "nullable": true
           },
-          "discountPercent": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
           "warehouseCode": {
             "type": "string",
-            "nullable": true
-          },
-          "baseType": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "baseEntry": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "baseLine": {
-            "type": "integer",
-            "format": "int32",
             "nullable": true
           }
         },
@@ -530,10 +570,6 @@
         ],
         "type": "object",
         "properties": {
-          "u_Cart": {
-            "type": "string",
-            "nullable": true
-          },
           "docDate": {
             "type": "string",
             "format": "date-time"
@@ -546,16 +582,11 @@
             "type": "string",
             "nullable": true
           },
-          "series": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
           "taxDate": {
             "type": "string",
             "format": "date-time"
           },
-          "docObjectCode": {
+          "u_PayMethod": {
             "type": "string",
             "nullable": true
           },
@@ -570,6 +601,10 @@
         "additionalProperties": false
       },
       "Draftsline": {
+        "required": [
+          "itemCode",
+          "quantity"
+        ],
         "type": "object",
         "properties": {
           "itemCode": {
@@ -757,6 +792,13 @@
           },
           "language": {
             "type": "string",
+            "nullable": true
+          },
+          "bpAddresses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BPAddress"
+            },
             "nullable": true
           }
         },

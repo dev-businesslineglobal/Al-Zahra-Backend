@@ -11,7 +11,6 @@ namespace GardnerAPI.BusinessLogic
     public class PostingBusinessLogic : IPostingBusinessLogic
     {
         private readonly IServiceLayerClient _sl;
-        //private readonly IUserRepository _auth;
         private readonly IDatabase _db;
 
         public PostingBusinessLogic(IServiceLayerClient serviceLayerClient, IDatabase db)
@@ -72,7 +71,6 @@ namespace GardnerAPI.BusinessLogic
             }
             catch (Exception ex)
             {
-                // Return a proper failure API response
                 return new ApiResult(500, new ApiResponse
                 {
                     success = false,
@@ -121,33 +119,10 @@ namespace GardnerAPI.BusinessLogic
             return ResultMapper.ToApiResult(op, successData!);
         }
 
-        //public Task<(bool Success, string Message)> PostCartItemsAsync(Cart cart, CancellationToken ct)
-        //{
-        //    if (cart == null) throw new ArgumentNullException(nameof(cart));
-
-        //    throw new NotImplementedException();
-        //}
-
-
-
         public async Task<ApiResult> SaveOTP(OTP payload)
         {
             try
             {
-                //var isExistEmail = await _db.GetOtpRecordAsync(payload.Code);
-                //if(isExistEmail != null)
-                //{
-                //    isExistEmail.U_OTPCode = payload.U_OTPCode;
-                //    isExistEmail.U_CreatedAt = DateTime.UtcNow;
-                //    isExistEmail.U_ExpireAt = DateTime.UtcNow.AddMinutes(10);
-                //    isExistEmail.U_IsUsed = "N";
-                //    var updateResult = await _sl.PatchOtpToUDOAsync(isExistEmail);
-                //    return new ApiResult(200, new ApiResponse
-                //    {
-                //        success = true,
-                //        data = updateResult.Result
-                //    });
-                //}
                 var result = await _sl.AddOTP(payload);
 
                 return new ApiResult(200, new ApiResponse
@@ -165,18 +140,5 @@ namespace GardnerAPI.BusinessLogic
                 });
             }
         }
-
-
-
-        //---------------Hassan Raza Code
-        //public async Task<ApiResult> SaveOTP(string cardCode, string email, string otp)
-        //{
-        //   var op = await _sl.SaveOtpAsync( cardCode,  email,  otp);
-        //    var successData = op.IsSuccess && op.Result != null
-        //       ? new { StudentCode = op.Result.CardCode, StudentName = op.Result.CardName }
-        //       : null;
-
-        //    return ResultMapper.ToApiResult(op, successData!);
-        //}
     }
 }

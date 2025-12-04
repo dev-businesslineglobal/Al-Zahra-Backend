@@ -28,8 +28,9 @@ namespace GardeningAPI.Application.Interfaces
 
         #region Items
         Task<List<ItemsMasterData>> GetItems(string whsCode);
-        Task<Cart?> GetCartDetails(string CardCode);
+        Task<List<Cart>> GetCartDetails(string CardCode);
 
+        Task<Cart> GetSingleCartDetails(int docEntry);
         #endregion
     }
 }

@@ -8,6 +8,7 @@ using GardeningAPI.Model;
 using GardeningAPI.Services;
 using GardeningAPI.Application.Interfaces;
 using GardeningAPI.Data;
+using GardeningAPI.Helper;
 
 namespace gardnerAPIs.Controllers
 {
@@ -24,9 +25,10 @@ namespace gardnerAPIs.Controllers
         private readonly IBusinessPartnerService _bpService;
         private readonly string? otp;
         private readonly int expiryMinutes;
+        private readonly HelperService _helper;
 
 
-        public LoginController(IUserRepository auth, IJwtTokenService jwt, IDatabase db, IConfig conf, IEmailService emailService, IBusinessPartnerService bpService)
+        public LoginController(IUserRepository auth, IJwtTokenService jwt, IDatabase db, IConfig conf, IEmailService emailService, IBusinessPartnerService bpService, HelperService helper)
         {
             _auth = auth;
             _jwt = jwt;
@@ -37,6 +39,7 @@ namespace gardnerAPIs.Controllers
             otp = config["SignUpOTP:OTP_Code"];
             expiryMinutes = int.TryParse(config["SignUpOTP:Expiry_Minutes"], out var value) ? value : 10;
             _bpService = bpService;
+            _helper = helper;
         }
 
         #region User Related Methods
@@ -74,20 +77,22 @@ namespace gardnerAPIs.Controllers
             }
 
             var token = _jwt.GenerateToken(request.email);
-            var details = await _db.GetLoginDetailsSignUp(request.email);
 
             var config = await _conf.GetConfiguration();
+            var userLanguage = _helper.ConvertCodeToLanguage(user.Language);
 
             return Ok(new LoginResponse
             {
                 email = request.email,
-                userName = details?.userName ?? "N/A",
-                mobile = details?.Mobile ?? "N/A",
-                language = details?.Language ?? "English",
+                CardCode = user.CardCode,
+                userName = user?.userName ?? "N/A",
+                mobile = user?.Mobile ?? "N/A",
+                language = userLanguage,
                 Success = true,
                 Message = "Login successful.",
                 Token = token,
                 WhCode = config?.whsCode ?? "N/A",
+                Address = user?.BPAddresses ?? [],
                 SessionTimeout = "60 minutes"
 
             });
@@ -134,6 +139,7 @@ namespace gardnerAPIs.Controllers
                 Mobile = request.Cellular,
                 Language = request.Language,
                 //configuration = config,
+                BPAddresses = request.BPAddresses,
                 Success = true,
                 Message = "Account created. OTP sent. Please verify your account."
             });

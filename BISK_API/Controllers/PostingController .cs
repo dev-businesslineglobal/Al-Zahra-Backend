@@ -27,7 +27,7 @@ namespace gardnerAPIs.Controllers
 
         [HttpPost("orders")]
         [Consumes("application/json")]
-      
+
         [ProducesResponseType(typeof(object), 200)]
         public async Task<IActionResult> PostOrder([FromBody] Document doc, CancellationToken ct)
         {
@@ -38,7 +38,7 @@ namespace gardnerAPIs.Controllers
         /// <summary>Create AR Invoice</summary>
         [HttpPost("invoices")]
         [Consumes("application/json")]
-     
+
         public async Task<IActionResult> PostInvoice([FromBody] Document doc, CancellationToken ct)
         {
             var result = await _logic.PostInvoiceAsync(doc, ct);
@@ -62,8 +62,6 @@ namespace gardnerAPIs.Controllers
             return StatusCode(result.StatusCode, result.Body);
         }
 
-
-
         [HttpPost("cart")]
         public async Task<IActionResult> PostCartItems([FromBody] Drafts draft, CancellationToken ct)
         {
@@ -83,12 +81,32 @@ namespace gardnerAPIs.Controllers
             return StatusCode(result.StatusCode, new
             {
                 success = true,
-                data = result.Body.data ?? new { }
+                DocEntry = result.Body.DocEntry
             });
         }
 
+        [HttpPatch("UpdateCart")]
+        public async Task<IActionResult> PutCartItems([FromQuery] int docEntry, [FromBody] Drafts draft, CancellationToken ct)
+        {
+            // Validate request
+            if (draft == null)
+                return BadRequest(new { success = false, error = "Cart payload is required." });
 
+            var isDocExist = await _db.GetSingleCartDetails(docEntry);
+            if (isDocExist == null || isDocExist.DocEntry != docEntry)
+                return NotFound(new { success = false, error = "No existing cart found to update." });
 
-
+            var result = await _items.PutCartItemsAsync(docEntry, draft, ct);
+            if (!result.Body.success)
+                return StatusCode(result.StatusCode, new
+                {
+                    success = false,
+                    error = result.Body.error ?? "An error occurred while updating cart items."
+                });
+            return StatusCode(result.StatusCode, new
+            {
+                success = true
+            });
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using gardnerAPIs.Common;
 using GardeningAPI.Application.Interfaces;
 using GardeningAPI.Model;
+using GardeningAPI.Helper;
 
 namespace GardeningAPI.Services
 {
@@ -9,24 +10,16 @@ namespace GardeningAPI.Services
         private readonly IPostingBusinessLogic _post;
         private readonly IDatabase _db;
         private readonly IServiceLayerClient _sl;
-        public BusinessPartnerService(IPostingBusinessLogic post, IDatabase db, IServiceLayerClient sl)
+        private readonly HelperService _helper;
+        public BusinessPartnerService(IPostingBusinessLogic post, IDatabase db, IServiceLayerClient sl, HelperService helper)
         {
             _post = post;
             _db = db;
             _sl = sl;
+            _helper = helper;
         }
 
         // ===================== Implementation of BusinessPartnerService methods goes here =====================
-        private int ConvertLanguageToCode(string language)
-        {
-            return language?.Trim().ToLower() switch
-            {
-                "english" => 3,
-                "arabic" => 32,
-                "kurdish" => 40,
-                _ => 3   // default English
-            };
-        }
         public async Task<ApiResult> CreateAsync(SignUpRequest request)
         {
             if (request.EmailAddress == null)
@@ -37,7 +30,7 @@ namespace GardeningAPI.Services
             {
                 throw new InvalidOperationException("Email is already registered.");
             }
-            int langCode = ConvertLanguageToCode(request.Language ?? "english");
+            int langCode = _helper.ConvertLanguageToCode(request.Language ?? "english");
 
             var bp = new SignUp
             {
@@ -47,7 +40,8 @@ namespace GardeningAPI.Services
                 LanguageCode = langCode,
                 Cellular = request.Cellular,
                 U_Password = request.U_Password,
-                U_Verified = "N"
+                U_Verified = "N",
+                BPAddresses = request.BPAddresses
             };
 
             var result = await _post.PostBusinessPartner(bp);

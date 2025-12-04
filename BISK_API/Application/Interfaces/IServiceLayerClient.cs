@@ -26,7 +26,7 @@ namespace GardeningAPI.Application.Interfaces
 
         Task<OperationResult<OTP>> PatchOtp(string code, object patch, CancellationToken ct = default);
         Task<OperationResult<ResponseItem>> AddCart(Drafts draft, CancellationToken ct = default);
-        Task<OperationResult<ResponseItem>> PutCart(string cardCode, Drafts put, CancellationToken ct = default);
+        Task<OperationResult<ResponseItem>> PutCart(int docEntry, Drafts put, CancellationToken ct = default);
         //Task<OperationResult<ResponseBP>> SaveOtpAsync(OTP otp, CancellationToken ct = default);
         //Task<OperationResult<ResponseBP>> SaveOtpAsync(string cardCode, string email, string otp, CancellationToken ct = default);
     }

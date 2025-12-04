@@ -245,5 +245,26 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "gardnerAPIs.Controllers.PostingController",
+    "Method": "PutCartItems",
+    "RelativePath": "api/v1/posting/UpdateCart",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "docEntry",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "draft",
+        "Type": "GardeningAPI.Model.Drafts",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   }
 ]

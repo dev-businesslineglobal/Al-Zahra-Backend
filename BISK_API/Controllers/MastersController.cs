@@ -6,7 +6,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
+using Newtonsoft.Json;
 using System.Xml.Linq;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace gardnerAPIs.Controllers
 {
@@ -96,22 +98,37 @@ namespace gardnerAPIs.Controllers
         [HttpGet("get/cart")]
         public async Task<IActionResult> GetCart([FromQuery] string cardCode)
         {
-            if (cardCode == null)
+            if (string.IsNullOrWhiteSpace(cardCode))
             {
                 return BadRequest(new ResponseResult
                 {
                     code = 400,
                     message = "CardCode is required.",
-                    data = null ?? new { }
+                    data = new { } 
                 });
             }
-            var result = await _itemsService.GetCartAsync(cardCode);
-            return StatusCode(200, new APIResponse
+
+            var cart = await _itemsService.GetCartAsync(cardCode);
+            //return (cart != null && cart.Count > 0) ? Ok(cart) :NotFound(new object[0]);
+            if (cart == null || cart.Count == 0)
             {
-                message = "Success",
-                data = result.data,
+                return Ok(new
+                {
+                    success = false,
+                    message = "Cart not found",
+                    data = new object[0]
+                });
+            }
+
+            return Ok(new
+            {
+                success = true,
+                message = "Cart fetched successfully",
+                data = cart
             });
+
         }
+
 
 
 

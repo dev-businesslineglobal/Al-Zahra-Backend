@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using SAPbobsCOM;
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace GardeningAPI.Model
@@ -23,6 +24,7 @@ namespace GardeningAPI.Model
         [MinLength(6, ErrorMessage = "Password must be at least 6 characters.")]
         public string? U_Password { get; set; }
         public string? Language { get; set; }
+        public BPAddress[]? BPAddresses { get; set; }
     }
 
     public class SignUp
@@ -45,7 +47,25 @@ namespace GardeningAPI.Model
         public string? U_Password { get; set; }
         public int LanguageCode { get; set; }
         public string? U_Verified { get; set; }
+        public BPAddress[]? BPAddresses { get; set; }
+
     }
+
+
+
+    public class BPAddress
+    {
+
+        [JsonIgnore]
+
+        public string AddressType { get; set; } = "S"; 
+        public required string AddressName { get; set; }
+        //public string? AddressName2 { get; set; }
+        //public string? AddressName3 { get; set; }
+
+
+    }
+
 
     public class SignUpResponse
     {
@@ -54,17 +74,12 @@ namespace GardeningAPI.Model
         public string? EmailAddress { get; set; }
         public string? Mobile { get; set; }
         [JsonIgnore]
-        public ConfigurationData? configuration { get; set; }
         public string? Language { get; set; }
         public bool Success { get; set; }
         public string? Message { get; set; }
-    }
+        public ConfigurationData? configuration { get; set; }
+        public BPAddress[]? BPAddresses { get; set; }
 
-    public class APIResponse
-    {
-        public string? message;
-        public int code;
-        public object? data;
     }
 
     public class ConfigurationData
@@ -80,6 +95,19 @@ namespace GardeningAPI.Model
         public string? whsCode { get; set; }
 
     }
+
+
+
+
+
+    public class APIResponse
+    {
+        public string? message;
+        public int code;
+        public object? data;
+    }
+
+ 
 
     #endregion
 

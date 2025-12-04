@@ -12,11 +12,13 @@ namespace GardeningAPI.Services
         private readonly IDatabase _db;
         private readonly HelperService _helper;
         private readonly IServiceLayerClient _sl;
-        public ItemsService(IDatabase db, HelperService helper, IServiceLayerClient sl)
+        private readonly IConfig _conf;
+        public ItemsService(IDatabase db, HelperService helper, IServiceLayerClient sl, IConfig conf)
         {
             _db = db;
             _helper = helper;
             _sl = sl;
+            _conf = conf;
         }
 
         // ======================= Fetching Items ========================= //
@@ -57,6 +59,35 @@ namespace GardeningAPI.Services
 
 
         // ======================= Cart Services ========================= //
+        public async Task<ApiResult> PutCartItemsAsync(int docEntry, Drafts draft, CancellationToken ct)
+        {
+            var config = await _conf.GetConfiguration();
+            draft.Series = config?.saleOrderSeries;
+            var putResponse = await _sl.PutCart(docEntry, draft, ct);
+
+            // Validate PUT result
+            if (putResponse == null || !putResponse.IsSuccess)
+            {
+                return new ApiResult(400, new ApiResponse
+                {
+                    success = false,
+                    error = putResponse?.ErrorMessages.First().error.message.value.ToString() ?? "Error in Patching Cart"
+                });
+            }
+
+            return new ApiResult(200, new ApiResponse
+            {
+                success = true,
+                data = putResponse.Result
+            });
+            //return new ApiResult(400, new ApiResponse
+            //{
+            //    success = false,
+            //    error = "No existing cart found to update."
+            //});
+        }
+
+
 
         public async Task<ApiResult> PostCartItemsAsync(Drafts draft, CancellationToken ct)
         {
@@ -66,36 +97,11 @@ namespace GardeningAPI.Services
                 return new ApiResult(400, new ApiResponse
                 {
                     success = false,
-                    error = "Cart payload is required."
+                    error = "Cart payload is required.",
                 });
             }
-
-            // Get cart details for the card code
-            var isCart = await _db.GetCartDetails(draft.CardCode ?? string.Empty);
-
-            // If user already has cart → update (PUT)
-            if (isCart != null && isCart.U_Cart == "Y")
-            {
-                var putResponse = await _sl.PutCart(draft.CardCode, draft, ct);
-
-                // Validate PUT result
-                if (putResponse == null || !putResponse.IsSuccess)
-                {
-                    return new ApiResult(400, new ApiResponse
-                    {
-                        success = false,
-                        error = "Failed to update cart."
-                    });
-                }
-
-                return new ApiResult(200, new ApiResponse
-                {
-                    success = true,
-                    data = putResponse.Result
-                });
-            }
-
-            // Otherwise → create new cart (POST)
+            var config = await _conf.GetConfiguration();
+            draft.Series = config?.saleOrderSeries;
             var cartResult = await _sl.AddCart(draft, ct);
 
             // Validate POST result
@@ -105,6 +111,7 @@ namespace GardeningAPI.Services
                 {
                     success = false,
                     error = "Service returned null response."
+                    //error = cartResult.ErrorMessages.
                 });
             }
 
@@ -130,32 +137,16 @@ namespace GardeningAPI.Services
             return new ApiResult(200, new ApiResponse
             {
                 success = true,
-                data = cartResult.Result
+                DocEntry = cartResult.Result.docEntry
             });
         }
 
 
 
-        public async Task<ApiResponse> GetCartAsync(string CardCode, CancellationToken cancellationToken = default)
-        {
-            var cart = await _db.GetCartDetails(CardCode);
-
-            if (cart == null)
-            {
-                return new ApiResponse
-                {
-                    success = false,
-                    error = "No cart found for the given CardCode."
-                };
-            }
-
-
-            return new ApiResponse
-            {
-                success = true,
-                data = cart
-            };
-        }
+        public async Task<List<Cart>> GetCartAsync(string CardCode, CancellationToken cancellationToken = default) => await _db.GetCartDetails(CardCode) ?? new List<Cart>();
+        
+      
+        
 
 
 

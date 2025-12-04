@@ -1,36 +1,39 @@
 ﻿using System.Runtime.InteropServices;
+using System.Text.Json.Serialization;
 
 namespace GardeningAPI.Model
 {
 
- 
-
- 
-
     public class Document
     {
-
         public required DateTime DocDate { get; set; }
         public required DateTime DocDueDate { get; set; }
         public required string CardCode { get; set; }
         public string? Comments { get; set; }
+        [JsonIgnore]
         public int? Series { get; set; }
-
         public DateTime TaxDate { get; set; }
-
+        public BPAddress[]? BPAddresses { get; set; }
         public required List<Documentline> DocumentLines { get; set; }
     }
 
     public class Documentline
     {
         public string? ItemCode { get; set; }
+        public string? ItemName { get; set; }
         public double Quantity { get; set; }
         public double? UnitPrice { get; set; } = null;
-        public double? DiscountPercent { get; set; } = null;
+        //public double? DiscountPercent { get; set; } = null;
 
         public string? WarehouseCode { get; set; }
+
+        [JsonIgnore]
         public int? BaseType { get; set; } = -1;
+
+        [JsonIgnore]
         public int? BaseEntry { get; set; } = null;
+
+        [JsonIgnore]
         public int? BaseLine { get; set; } = null;
     }
 
@@ -122,7 +125,7 @@ namespace GardeningAPI.Model
         public required string CreditAcct { get; set; }
         public required string CreditCardNumber { get; set; }
         public required DateTime CardValidUntil { get; set; }
-        public  required string VoucherNum { get; set; }
+        public required string VoucherNum { get; set; }
         public required double CreditSum { get; set; }
     }
 
@@ -134,6 +137,24 @@ namespace GardeningAPI.Model
         public required int DocEntry { get; set; }
         public required double SumApplied { get; set; }
     }
+
+
+    public class DownPayment
+    {
+        public string CardCode { get; set; }
+        public DownPaymentLine[] DownPaymentLine { get; set; }
+        [JsonIgnore]
+        public string DownPaymentType { get; set; } = "dptInvoice";
+    }
+
+    public class DownPaymentLine
+    {
+        public string ItemCode { get; set; }
+        public string Quantity { get; set; }
+        public string TaxCode { get; set; }
+        public string UnitPrice { get; set; }
+    }
+
 
 }
 
